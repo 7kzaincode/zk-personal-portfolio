@@ -1,66 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zain Khan | compeng @uwaterloo</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@100;300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        overflow-x: hidden;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zain Khan | compeng @uwaterloo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"EB Garamond"', 'serif'],
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
       }
-      .serif {
-        font-family: 'EB Garamond', serif;
+    }
+  </script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@100;300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .serif {
+      font-family: 'EB Garamond', serif;
+    }
+
+    .serif-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    html,
+    body {
+      -ms-overflow-style: none;
+      /* IE and Edge */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
       }
-      .serif-display {
-        font-family: 'Playfair Display', serif;
+
+      to {
+        opacity: 1;
       }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 4px;
+    }
+
+    @keyframes zoom-in {
+      from {
+        transform: scale(0.95);
       }
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: transparent;
+
+      to {
+        transform: scale(1);
       }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: rgba(128, 128, 128, 0.3);
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #333;
-        border-radius: 10px;
-      }
-      .dark ::-webkit-scrollbar-thumb {
-        background: #eee;
-      }
-      
-      @keyframes fade-in {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      @keyframes zoom-in {
-        from { transform: scale(0.95); }
-        to { transform: scale(1); }
-      }
-      .animate-in {
-        animation-fill-mode: both;
-      }
-      .fade-in {
-        animation-name: fade-in;
-      }
-      .zoom-in {
-        animation-name: zoom-in;
-      }
-    </style>
-    <script type="importmap">
+    }
+
+    .animate-in {
+      animation-fill-mode: both;
+    }
+
+    .fade-in {
+      animation-name: fade-in;
+    }
+
+    .zoom-in {
+      animation-name: zoom-in;
+    }
+  </style>
+  <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@^19.2.3",
@@ -71,9 +94,12 @@
   }
 }
 </script>
-    <script type="module" src="./index.tsx"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  <script type="module" src="./index.tsx"></script>
+</head>
+
+<body
+  class="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 transition-colors duration-1000 no-scrollbar">
+  <div id="root"></div>
+</body>
+
 </html>

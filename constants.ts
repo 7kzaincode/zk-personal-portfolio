@@ -5,19 +5,63 @@ export interface DetailedProject extends Project {
   why: string;
 }
 
+import photo1 from './images/photo1.jpg';
+import photo2 from './images/photo2.jpg';
+import photo3 from './images/photo3.jpg';
+import photo4 from './images/photo4.jpg';
+import photo5 from './images/photo5.jpg';
+
+
 export const NAME = "zain khan";
 export const SUBTITLE = "compeng @uwaterloo";
 export const BIO = "I'm a first-year Computer Engineering student at the University of Waterloo. I like building software that is simple to look at and actually useful to use.";
 
 export const HELLOS = [
-  "Hello", "Bonjour", "Hola", "Ciao", "Konnichiwa", 
-  "Namaste", "Annyeong", "Hallo", "Olá", "Szia", "Hej", "Ahoj", "Zdravo"
+  "Hello", "Bonjour", "Hola", "Ciao",
+  "こんにちは",   // Japanese
+  "안녕하세요",   // Korean
+  "नमस्ते",      // Devanagari (Hindi/Sanskrit)
+  "שלום",        // Hebrew
+  "你好",         // Chinese
+  "Γειά",        // Greek
+  "Здраво",     // Cyrillic
+  "مرحبا"      // Arabic
 ];
 
 export const TECH_STACK = [
-  "C/C++", "Python", "React", "TypeScript", "JavaScript", 
-  "Supabase", "PostgreSQL", "Tailwind CSS", "ARM Assembly", 
+  "C/C++", "Python", "React", "TypeScript", "JavaScript",
+  "Supabase", "PostgreSQL", "Tailwind CSS", "ARM Assembly",
   "Verilog", "Node.js", "Git", "Google Gemini API", "PHP", "SQL"
+];
+
+export interface Experience {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  description: string;
+  tags: string[];
+  link?: string;
+}
+
+export const EXPERIENCES: Experience[] = [
+  {
+    id: "kasperia",
+    company: "Kasperia",
+    role: "Full-Stack Developer",
+    period: "2023 - Present",
+    description: "Built and maintain a custom data management system for a mid-sized equipment distribution company, modernizing their workflow from paper forms to digital.",
+    tags: ["JavaScript", "Python", "SQL", "PHP"],
+    link: "https://kasperia.ca/"
+  },
+  {
+    id: "watonmous",
+    company: "WATonomous",
+    role: "Software Team Member",
+    period: "2025 - Present",
+    description: "Contributing to the University of Waterloo's autonomous vehicle design team, working on perception and planning systems.",
+    tags: ["Python", "ROS2", "C++", "Autonomous Systems"]
+  }
 ];
 
 export const PROJECTS: DetailedProject[] = [
@@ -29,15 +73,6 @@ export const PROJECTS: DetailedProject[] = [
     tags: ["React", "TypeScript", "Supabase", "Gemini API"],
     link: "https://inven-s-tory.vercel.app/",
     image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop"
-  },
-  {
-    id: "kasperia",
-    title: "Kasperia",
-    description: "A custom data management system for a mid-sized equipment distribution company.",
-    why: "My family's business was still using paper forms and messy spreadsheets for inventory and orders. I built this to modernize their workflow and make their daily data entry much faster.",
-    tags: ["JavaScript", "Python", "SQL", "PHP"],
-    link: "https://kasperia.ca/",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
   },
   {
     id: "ascii",
@@ -58,12 +93,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const ARTWORK = [
-  "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1501472312651-726afe119ff1?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1515405299444-24a1efee20ae?q=80&w=1000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1547891319-184a7551c1ca?q=80&w=1000&auto=format&fit=crop"
+  photo1,
+  photo2,
+  photo3,
+  photo4,
+  photo5,
 ];

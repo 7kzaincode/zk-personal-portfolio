@@ -25,7 +25,7 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
 
   return (
     <div className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
-      
+
       {/* Moving Background Watermark */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none opacity-[0.02] dark:opacity-[0.04]">
         <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] animate-diag-scroll flex flex-col gap-12">
@@ -44,8 +44,8 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
       <div className="relative z-20 text-center px-4 max-w-screen-xl mx-auto flex flex-col items-center">
         <div className="mb-4 flex flex-col items-center">
           {NAME.split(' ').map((part, i) => (
-            <h1 
-              key={i} 
+            <h1
+              key={i}
               className={`text-[24vw] md:text-[16rem] font-normal serif tracking-tighter leading-[0.85] select-none lowercase transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: `${i * 150}ms` }}
             >
@@ -53,19 +53,19 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
             </h1>
           ))}
         </div>
-        
+
         <div className={`mt-6 mb-24 transition-opacity duration-1000 delay-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <TypingText start={isLoaded} />
         </div>
 
         <div className={`flex justify-center gap-6 items-center transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {SOCIAL_LINKS.map((link) => (
-            <a 
-              key={link.label} 
-              href={link.url} 
-              target="_blank" 
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
               rel="noreferrer"
-              className="w-14 h-14 flex items-center justify-center rounded-full border border-current border-opacity-10 text-current opacity-30 hover:opacity-100 hover:border-opacity-100 transition-all hover:scale-110"
+              className="w-14 h-14 flex items-center justify-center rounded-full border border-current border-opacity-10 text-current opacity-30 hover:opacity-100 hover:border-opacity-100 transition-all hover:scale-110 transform-gpu"
               aria-label={link.label}
             >
               {getIcon(link.label)}

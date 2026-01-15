@@ -1,30 +1,44 @@
 
 import React, { useState, useEffect } from 'react';
-import Hero from './components/Hero';
-import AboutMe from './components/AboutMe';
-import About from './components/About';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Preloader from './components/Preloader';
-import ProjectModal from './components/ProjectModal';
-import { Theme, Project } from './types';
-import { NAME } from './constants';
+import Hero from './components/Hero.tsx';
+import AboutMe from './components/AboutMe.tsx';
+import About from './components/About.tsx';
+import Experience from './components/Experience.tsx';
+import Projects from './components/Projects.tsx';
+import Contact from './components/Contact.tsx';
+import TechStack from './components/TechStack.tsx';
+import Preloader from './components/Preloader.tsx';
+import ProjectModal from './components/ProjectModal.tsx';
+import MouseTrail from './components/MouseTrail.tsx';
+import { Theme, Project } from './types.ts';
+import { NAME } from './constants.ts';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
   const [loading, setLoading] = useState(true);
   const [isAppVisible, setIsAppVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+
+  // Initialize theme from system preference
+  useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme(Theme.DARK);
+    }
+  }, []);
 
   const toggleTheme = () => {
     setTheme(prev => prev === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
 
   useEffect(() => {
+    const root = document.documentElement;
     if (theme === Theme.DARK) {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
   }, [theme]);
 
@@ -34,11 +48,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-1000 ${
-      theme === Theme.LIGHT ? 'bg-white text-black' : 'bg-neutral-950 text-white'
-    }`}>
+    <div className="min-h-screen bg-white dark:bg-neutral-950 text-black dark:text-white transition-colors duration-1000 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+      <MouseTrail />
       {loading && <Preloader onComplete={handlePreloaderComplete} />}
-      
+
       <div className={`fixed top-10 right-10 z-[100] transition-opacity duration-1000 ${isAppVisible ? 'opacity-100' : 'opacity-0'}`}>
         <button
           onClick={toggleTheme}
@@ -59,14 +72,20 @@ const App: React.FC = () => {
         <Hero isLoaded={isAppVisible} />
         <AboutMe />
         <About />
-        <Projects onSelectProject={setSelectedProject} />
+        <div className="px-10 md:px-20 lg:px-40 py-16">
+          <div className="max-w-6xl mx-auto">
+            <TechStack onTechClick={setSelectedTech} selectedTech={selectedTech} />
+          </div>
+        </div>
+        <Experience />
+        <Projects onSelectProject={setSelectedProject} filterTech={selectedTech} />
         <Contact />
       </main>
 
-      <ProjectModal 
-        project={selectedProject} 
-        isOpen={!!selectedProject} 
-        onClose={() => setSelectedProject(null)} 
+      <ProjectModal
+        project={selectedProject}
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
       />
 
       <div className="fixed inset-0 pointer-events-none z-[4000] opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>

@@ -30,10 +30,10 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
         case 'typing': {
           if (text.length < mistakeAt.length) {
             setText(targetText.slice(0, text.length + 1));
-            timer = window.setTimeout(tick, 50);
+            timer = window.setTimeout(tick, 30);
           } else {
             setPhase('mistake');
-            timer = window.setTimeout(tick, 80);
+            timer = window.setTimeout(tick, 50);
           }
           break;
         }
@@ -42,10 +42,10 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
           const typedWrong = text.slice(mistakeAt.length);
           if (typedWrong.length < wrongSuffix.length) {
             setText(mistakeAt + wrongSuffix.slice(0, typedWrong.length + 1));
-            timer = window.setTimeout(tick, 80); // slower, noticeable
+            timer = window.setTimeout(tick, 50); // slower, noticeable
           } else {
             setPhase('pausing_on_mistake');
-            timer = window.setTimeout(tick, 700); // pause so user reads it
+            timer = window.setTimeout(tick, 400); // pause so user reads it
           }
           break;
         }
@@ -59,7 +59,7 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
         case 'deleting_mistake': {
           if (text.length > mistakeAt.length) {
             setText(text.slice(0, -1));
-            timer = window.setTimeout(tick, 35); // human backspace
+            timer = window.setTimeout(tick, 20); // human backspace
           } else {
             setPhase('fixing');
             timer = window.setTimeout(tick, 60);
@@ -70,10 +70,10 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
         case 'fixing': {
           if (text.length < targetText.length) {
             setText(targetText.slice(0, text.length + 1));
-            timer = window.setTimeout(tick, 45);
+            timer = window.setTimeout(tick, 30);
           } else {
             setPhase('pausing_at_end');
-            timer = window.setTimeout(tick, 2500);
+            timer = window.setTimeout(tick, 1500);
           }
           break;
         }
@@ -90,7 +90,7 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
             timer = window.setTimeout(tick, 15);
           } else {
             setPhase('typing');
-            timer = window.setTimeout(tick, 600);
+            timer = window.setTimeout(tick, 400);
           }
           break;
         }
