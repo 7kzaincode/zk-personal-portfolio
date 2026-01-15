@@ -11,8 +11,8 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
   >('waiting');
 
   const targetText = 'computer engineering @ the university of waterloo';
-  const mistakeAt = 'compu';
-  const wrongSuffix = 'rte'; // compurte
+  const mistakeAt = 'comput';
+  const wrongSuffix = 're'; // compurte
 
   useEffect(() => {
     if (!start) return;

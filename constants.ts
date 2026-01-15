@@ -1,7 +1,6 @@
 
 import { Project, SocialLink } from './types';
 
-// Adding custom fields for honesty/readability
 export interface DetailedProject extends Project {
   why: string;
 }
@@ -25,7 +24,7 @@ export const PROJECTS: DetailedProject[] = [
   {
     id: "inventory",
     title: "inven[s]tory",
-    description: "An app that helps you organize your physical stuff by mapping items to specific locations in your house.",
+    description: "A full-stack spatial asset mapping system for digitally organizing physical possessions.",
     why: "I built this because I kept losing my engineering tools and expensive components. I needed a way to visually 'search' my own room for things I'd put in boxes months ago.",
     tags: ["React", "TypeScript", "Supabase", "Gemini API"],
     link: "https://inven-s-tory.vercel.app/",
@@ -59,12 +58,12 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const ARTWORK = [
-  "images/photo1.jpg",
-  "images/photo2.jpg",
-  "images/photo3.jpg",
-  "images/photo4.jpg",
-  "images/photo5.jpg",
-  "images/photo6.jpg",
-  "images/photo7.jpg",
-  "images/photo8.jpg"
+  "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1549490349-8643362247b5?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1501472312651-726afe119ff1?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1515405299444-24a1efee20ae?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1547891319-184a7551c1ca?q=80&w=1000&auto=format&fit=crop"
 ];
