@@ -73,9 +73,9 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
           <TypingText start={isLoaded} />
         </div>
 
-        {/* Social icons */}
+        {/* Social icons + Resume button */}
         <div className={`flex justify-center gap-6 items-center transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {SOCIAL_LINKS.map((link) => (
+          {SOCIAL_LINKS.filter(link => link.label !== 'resume').map((link) => (
             <a
               key={link.label}
               href={link.url}
@@ -85,6 +85,23 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
               aria-label={link.label}
             >
               {getIcon(link.label)}
+            </a>
+          ))}
+
+          {/* Resume button - matches icon style but with text */}
+          {SOCIAL_LINKS.filter(link => link.label === 'resume').map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className="h-12 px-6 flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-[0.3em] hover:text-black dark:hover:text-white hover:border-neutral-900 dark:hover:border-neutral-100 hover:scale-110 transition-all duration-200"
+              aria-label="Resume"
+            >
+              Resume
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
             </a>
           ))}
         </div>

@@ -102,7 +102,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { label: "github", url: "https://github.com/7kzaincode" },
   { label: "mail", url: "mailto:kn.zain@hotmail.com" },
   { label: "twitter", url: "https://x.com/sevenkzain" },
-  { label: "resume", url: "/resume.pdf" }
+  { label: "resume", url: "/zainkhanresume.pdf" }
 ];
 
 export const ARTWORK = [
