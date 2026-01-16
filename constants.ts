@@ -24,7 +24,7 @@ export const HELLOS = [
   "こんにちは",   // Japanese
   "안녕하세요",   // Korean
   "नमस्ते",      // Devanagari (Hindi/Sanskrit)
-  "שלום",        // Hebrew
+  "สวัสดี",        // Thai
   "你好",         // Chinese
   "Γειά",        // Greek
   "Здраво",     // Cyrillic
