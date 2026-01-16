@@ -16,7 +16,7 @@ import ascii from './images/ascii-art.png';
 
 
 export const NAME = "zain khan";
-export const SUBTITLE = "compeng @uwaterloo";
+export const SUBTITLE = "comp-eng @uwaterloo";
 export const BIO = "I'm a first-year Computer Engineering student at the University of Waterloo. I like building software that is simple to look at and actually useful to use.";
 
 export const HELLOS = [
