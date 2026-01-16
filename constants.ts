@@ -10,6 +10,9 @@ import photo2 from './images/photo2.jpg';
 import photo3 from './images/photo3.jpg';
 import photo4 from './images/photo4.jpg';
 import photo5 from './images/photo5.jpg';
+import sketchy from './images/sketchy.png';
+import investory from './images/inven[s]tory.png';
+import ascii from './images/ascii-art.png';
 
 
 export const NAME = "zain khan";
@@ -66,22 +69,31 @@ export const EXPERIENCES: Experience[] = [
 
 export const PROJECTS: DetailedProject[] = [
   {
+    id: "sketchy",
+    title: "Sketchy",
+    description: "An AI-powered web app that transforms hand-drawn wireframes into production-ready websites.",
+    why: "Built at DeltaHacks 2026 — we were curious if we could bridge the gap between a napkin sketch and a deployed website using multimodal AI. Turns out, you can.",
+    tags: ["Next.js", "TypeScript", "MongoDB", "Gemini API"],
+    link: "https://sketchywebsite.tech/",
+    image: sketchy
+  },
+  {
     id: "inventory",
     title: "inven[s]tory",
     description: "A full-stack spatial asset mapping system for digitally organizing physical possessions.",
-    why: "I built this because I kept losing my engineering tools and expensive components. I needed a way to visually 'search' my own room for things I'd put in boxes months ago.",
+    why: "Growing up playing games with inventory systems, I always thought — why don't we have this for real life? As a kid I could never find obscure things I owned. The vision is to evolve it into a Depop-style marketplace where you can trade, sell, and message others.",
     tags: ["React", "TypeScript", "Supabase", "Gemini API"],
     link: "https://inven-s-tory.vercel.app/",
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2000&auto=format&fit=crop"
+    image: investory
   },
   {
     id: "ascii",
-    title: "Image to ASCII",
-    description: "A simple web tool that converts any uploaded photo into text-based art.",
-    why: "I've always loved the retro look of 70s and 80s computer terminal graphics. I wanted to see if I could write an algorithm that translates pixel brightness into the right text characters effectively.",
-    tags: ["Python", "JavaScript", "Image Processing"],
+    title: "ASCII Art Studio",
+    description: "A real-time media-to-ASCII converter with video/webcam processing and a brutalist terminal UI.",
+    why: "I've always loved the retro look of 70s and 80s computer terminal graphics. I wanted to push beyond static images and build a full real-time processing pipeline — handling video frames at 24fps, integrating webcam feeds, and creating an animated Matrix-style ASCII rain background. Zero dependencies, pure vanilla JS.",
+    tags: ["JavaScript", "Canvas API", "HTML5", "CSS3"],
     link: "https://image-to-ascii-art.netlify.app/",
-    image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop"
+    image: ascii
   }
 ];
 

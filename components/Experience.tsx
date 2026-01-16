@@ -4,7 +4,7 @@ import { EXPERIENCES } from '../constants';
 
 const Experience: React.FC = () => {
     return (
-        <section className="px-10 md:px-20 lg:px-40 py-20 min-h-screen flex flex-col justify-center">
+        <section className="px-10 md:px-20 lg:px-40 py-16">
             <div className="max-w-6xl mx-auto w-full">
                 <div className="mb-14">
                     <h2 className="text-[10px] font-mono uppercase tracking-[0.5em] opacity-40 mb-2">Experience</h2>

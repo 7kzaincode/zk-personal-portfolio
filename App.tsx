@@ -72,12 +72,12 @@ const App: React.FC = () => {
         <Hero isLoaded={isAppVisible} />
         <AboutMe />
         <About />
+        <Experience />
         <div className="px-10 md:px-20 lg:px-40 py-16">
           <div className="max-w-6xl mx-auto">
             <TechStack onTechClick={setSelectedTech} selectedTech={selectedTech} />
           </div>
         </div>
-        <Experience />
         <Projects onSelectProject={setSelectedProject} filterTech={selectedTech} />
         <Contact />
       </main>
