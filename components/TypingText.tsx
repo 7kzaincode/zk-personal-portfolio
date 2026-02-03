@@ -1,39 +1,54 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface TypingTextProps {
   start?: boolean;
 }
 
-const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
-  const [text, setText] = useState('');
-  const [phase, setPhase] = useState<
-    'waiting' | 'typing' | 'mistake' | 'pausing_on_mistake' | 'deleting_mistake' | 'fixing' | 'pausing_at_end' | 'deleting'
-  >('waiting');
+const phrases = [
+  'computer engineering @ the university of waterloo',
+  'one day i hope to live a simple life as a shepherd',
+  'currently mass applying to internships... plz hire me :)',
+];
 
-  const targetText = 'computer engineering @ the university of waterloo';
+const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
+  const [displayText, setDisplayText] = useState('');
+  const textRef = useRef('');
+  const phaseRef = useRef<string>('waiting');
+  const timerRef = useRef<number>(0);
+  const phraseIndexRef = useRef(0);
+
   const mistakeAt = 'comput';
-  const wrongSuffix = 're'; // compurte
+  const wrongSuffix = 're';
 
   useEffect(() => {
     if (!start) return;
 
-    let timer: number;
+    const jitter = (base: number, variance: number) =>
+      base + Math.random() * variance;
+
+    const currentPhrase = () => phrases[phraseIndexRef.current];
 
     const tick = () => {
+      const text = textRef.current;
+      const phase = phaseRef.current;
+      const isFirstPhrase = phraseIndexRef.current === 0;
+
       switch (phase) {
         case 'waiting': {
-          setPhase('typing');
+          phaseRef.current = isFirstPhrase ? 'typing_with_mistake' : 'typing';
+          timerRef.current = window.setTimeout(tick, 0);
           break;
         }
 
-        case 'typing': {
+        case 'typing_with_mistake': {
           if (text.length < mistakeAt.length) {
-            setText(targetText.slice(0, text.length + 1));
-            timer = window.setTimeout(tick, 30);
+            textRef.current = currentPhrase().slice(0, text.length + 1);
+            setDisplayText(textRef.current);
+            timerRef.current = window.setTimeout(tick, jitter(45, 50));
           } else {
-            setPhase('mistake');
-            timer = window.setTimeout(tick, 50);
+            phaseRef.current = 'mistake';
+            timerRef.current = window.setTimeout(tick, jitter(35, 30));
           }
           break;
         }
@@ -41,69 +56,86 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
         case 'mistake': {
           const typedWrong = text.slice(mistakeAt.length);
           if (typedWrong.length < wrongSuffix.length) {
-            setText(mistakeAt + wrongSuffix.slice(0, typedWrong.length + 1));
-            timer = window.setTimeout(tick, 50); // slower, noticeable
+            textRef.current = mistakeAt + wrongSuffix.slice(0, typedWrong.length + 1);
+            setDisplayText(textRef.current);
+            timerRef.current = window.setTimeout(tick, jitter(50, 40));
           } else {
-            setPhase('pausing_on_mistake');
-            timer = window.setTimeout(tick, 400); // pause so user reads it
+            phaseRef.current = 'pausing_on_mistake';
+            timerRef.current = window.setTimeout(tick, jitter(250, 200));
           }
           break;
         }
 
         case 'pausing_on_mistake': {
-          setPhase('deleting_mistake');
-          timer = window.setTimeout(tick, 40);
+          phaseRef.current = 'deleting_mistake';
+          timerRef.current = window.setTimeout(tick, jitter(50, 30));
           break;
         }
 
         case 'deleting_mistake': {
           if (text.length > mistakeAt.length) {
-            setText(text.slice(0, -1));
-            timer = window.setTimeout(tick, 20); // human backspace
+            textRef.current = text.slice(0, -1);
+            setDisplayText(textRef.current);
+            timerRef.current = window.setTimeout(tick, jitter(35, 25));
           } else {
-            setPhase('fixing');
-            timer = window.setTimeout(tick, 60);
+            phaseRef.current = 'fixing';
+            timerRef.current = window.setTimeout(tick, jitter(80, 60));
           }
           break;
         }
 
         case 'fixing': {
-          if (text.length < targetText.length) {
-            setText(targetText.slice(0, text.length + 1));
-            timer = window.setTimeout(tick, 30);
+          if (text.length < currentPhrase().length) {
+            textRef.current = currentPhrase().slice(0, text.length + 1);
+            setDisplayText(textRef.current);
+            timerRef.current = window.setTimeout(tick, jitter(40, 45));
           } else {
-            setPhase('pausing_at_end');
-            timer = window.setTimeout(tick, 1500);
+            phaseRef.current = 'pausing_at_end';
+            timerRef.current = window.setTimeout(tick, 1500);
+          }
+          break;
+        }
+
+        case 'typing': {
+          if (text.length < currentPhrase().length) {
+            textRef.current = currentPhrase().slice(0, text.length + 1);
+            setDisplayText(textRef.current);
+            timerRef.current = window.setTimeout(tick, jitter(45, 50));
+          } else {
+            phaseRef.current = 'pausing_at_end';
+            timerRef.current = window.setTimeout(tick, 1500);
           }
           break;
         }
 
         case 'pausing_at_end': {
-          setPhase('deleting');
-          timer = window.setTimeout(tick, 15);
+          phaseRef.current = 'deleting';
+          timerRef.current = window.setTimeout(tick, jitter(25, 20));
           break;
         }
 
         case 'deleting': {
           if (text.length > 0) {
-            setText(text.slice(0, -1));
-            timer = window.setTimeout(tick, 15);
+            textRef.current = text.slice(0, -1);
+            setDisplayText(textRef.current);
+            timerRef.current = window.setTimeout(tick, jitter(20, 15));
           } else {
-            setPhase('typing');
-            timer = window.setTimeout(tick, 400);
+            phraseIndexRef.current = (phraseIndexRef.current + 1) % phrases.length;
+            phaseRef.current = 'waiting';
+            timerRef.current = window.setTimeout(tick, jitter(250, 150));
           }
           break;
         }
       }
     };
 
-    timer = window.setTimeout(tick, 200);
-    return () => clearTimeout(timer);
-  }, [text, phase, start]);
+    timerRef.current = window.setTimeout(tick, 1800);
+    return () => clearTimeout(timerRef.current);
+  }, [start]);
 
   return (
-    <span className="inline-block font-mono font-medium opacity-30 text-lg md:text-2xl uppercase tracking-[0.6em] italic leading-none">
-      {text}
+    <span className="inline-block font-mono font-medium opacity-30 text-xs md:text-lg uppercase tracking-[0.4em] italic leading-none whitespace-nowrap">
+      {displayText}
       <span className="animate-pulse ml-4 inline-block w-[2px] h-[0.7em] bg-current align-middle opacity-20" />
     </span>
   );

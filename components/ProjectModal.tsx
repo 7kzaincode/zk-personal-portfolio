@@ -82,14 +82,21 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
           </div>
 
           {/* Right Column */}
-          <div className="relative aspect-square md:aspect-[4/5] overflow-hidden border border-black dark:border-white border-opacity-10 shadow-sm">
-            <img 
-              src={project.image} 
-              alt={project.title} 
-              className="w-full h-full object-cover grayscale contrast-125" 
-            />
-            <div className="absolute inset-0 bg-neutral-950/5 pointer-events-none"></div>
-          </div>
+          {(() => {
+            const isLogo = project.id === 'otto' || project.id === 'sketchy';
+            return (
+              <div className={`relative aspect-square md:aspect-[4/5] overflow-hidden shadow-sm ${isLogo ? 'bg-white dark:bg-neutral-950 border border-black dark:border-white border-opacity-20' : 'border border-black dark:border-white border-opacity-10'}`}>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className={`w-full h-full grayscale contrast-125 ${isLogo ? 'object-contain p-8 dark:invert' : 'object-cover'}`}
+                />
+                {!isLogo && (
+                  <div className="absolute inset-0 bg-neutral-950/5 pointer-events-none"></div>
+                )}
+              </div>
+            );
+          })()}
         </div>
         
         <div className="py-24 text-center opacity-10 text-[9px] font-mono uppercase tracking-[1em] italic">

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Hero from './components/Hero.tsx';
 import AboutMe from './components/AboutMe.tsx';
 import About from './components/About.tsx';
@@ -19,6 +19,14 @@ const App: React.FC = () => {
   const [isAppVisible, setIsAppVisible] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const [pullY, setPullY] = useState(0);
+  const [swingAngle, setSwingAngle] = useState(0);
+  const isPulling = useRef(false);
+  const pullYRef = useRef(0);
+  const lastDx = useRef(0);
+  const startX = useRef(0);
+  const startY = useRef(0);
+  const animRef = useRef<number>(0);
 
   // Initialize theme from system preference
   useEffect(() => {
@@ -42,6 +50,27 @@ const App: React.FC = () => {
     }
   }, [theme]);
 
+  const startSwing = (energy: number) => {
+    cancelAnimationFrame(animRef.current);
+    const s = { angle: 0, vel: energy };
+    const step = () => {
+      s.vel += -0.15 * s.angle;
+      s.vel *= 0.93;
+      s.angle += s.vel;
+      setSwingAngle(s.angle);
+      if (Math.abs(s.vel) > 0.05 || Math.abs(s.angle) > 0.05) {
+        animRef.current = requestAnimationFrame(step);
+      } else {
+        setSwingAngle(0);
+      }
+    };
+    animRef.current = requestAnimationFrame(step);
+  };
+
+  useEffect(() => {
+    return () => cancelAnimationFrame(animRef.current);
+  }, []);
+
   const handlePreloaderComplete = () => {
     setLoading(false);
     setIsAppVisible(true);
@@ -52,13 +81,60 @@ const App: React.FC = () => {
       <MouseTrail />
       {loading && <Preloader onComplete={handlePreloaderComplete} />}
 
-      <div className={`fixed top-10 right-10 z-[100] transition-opacity duration-1000 ${isAppVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <button
-          onClick={toggleTheme}
-          className="text-[10px] uppercase tracking-[0.8em] font-black hover:opacity-40 transition-all mix-blend-difference"
-        >
-          {theme === Theme.LIGHT ? 'DARK_MODE' : 'LIGHT_MODE'}
-        </button>
+      <div className={`fixed top-0 right-10 z-[100] transition-opacity duration-1000 ${isAppVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div style={{ transformOrigin: 'top center', transform: `rotate(${swingAngle}deg)` }}>
+          <div
+            className="flex flex-col items-center cursor-grab active:cursor-grabbing mix-blend-difference select-none touch-none"
+            onPointerDown={(e) => {
+              e.preventDefault();
+              cancelAnimationFrame(animRef.current);
+              setSwingAngle(0);
+              isPulling.current = true;
+              pullYRef.current = 0;
+              lastDx.current = 0;
+              startX.current = e.clientX;
+              startY.current = e.clientY;
+
+              const onMove = (ev: PointerEvent) => {
+                if (!isPulling.current) return;
+                const dx = ev.clientX - startX.current;
+                const dy = ev.clientY - startY.current;
+                const dist = Math.min(Math.sqrt(dx * dx + dy * dy), 50);
+                lastDx.current = dx;
+                pullYRef.current = dist;
+                setPullY(dist);
+              };
+
+              const onRelease = () => {
+                window.removeEventListener('pointermove', onMove);
+                window.removeEventListener('pointerup', onRelease);
+                window.removeEventListener('pointercancel', onRelease);
+
+                if (!isPulling.current) return;
+                isPulling.current = false;
+                const distance = pullYRef.current;
+                const dx = lastDx.current;
+                pullYRef.current = 0;
+                lastDx.current = 0;
+                setPullY(0);
+                if (distance > 10) {
+                  toggleTheme();
+                  const direction = dx >= 0 ? 1 : -1;
+                  startSwing(distance * 0.25 * direction);
+                }
+              };
+
+              window.addEventListener('pointermove', onMove);
+              window.addEventListener('pointerup', onRelease);
+              window.addEventListener('pointercancel', onRelease);
+            }}
+          >
+            {/* Cord */}
+            <div className="w-px bg-current opacity-40" style={{ height: `${48 + pullY}px` }} />
+            {/* Pull handle */}
+            <div className="w-2.5 h-2.5 rounded-full border border-current opacity-50 mt-0.5" />
+          </div>
+        </div>
       </div>
 
       <div className={`fixed top-10 left-10 z-[100] mix-blend-difference pointer-events-none transition-opacity duration-1000 ${isAppVisible ? 'opacity-100' : 'opacity-0'}`}>

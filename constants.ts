@@ -13,6 +13,7 @@ import photo5 from './images/photo5.jpg';
 import sketchy from './images/sketchy.png';
 import investory from './images/inven[s]tory.png';
 import ascii from './images/ascii-art.png';
+import otto from './images/otto_removed.png';
 
 
 export const NAME = "zain khan";
@@ -69,6 +70,15 @@ export const EXPERIENCES: Experience[] = [
 
 export const PROJECTS: DetailedProject[] = [
   {
+    id: "otto",
+    title: "OTTO",
+    description: "An AI voice agent that automates GitHub, Gmail, and Google Calendar workflows through natural speech commands.",
+    why: "I wanted to build something that felt like having a real assistant, not another chatbot you have to type at, but something you could just talk to while your hands are busy coding. So I made jarvis for developers :) and won 1st place LiveKit track @ NEXhacks (Carnegie Mellon University, 1500+ hackers) ",
+    tags: ["Next.js", "TypeScript", "Python", "LiveKit WebRTC", "Deepgram", "Gemini 2.5 Flash", "Supabase", "Token Compression"],
+    link: "https://github.com/7kzaincode/otto", // update with actual link
+    image: otto // update with actual image variable
+  },
+{
     id: "sketchy",
     title: "Sketchy",
     description: "An AI-powered web app that transforms hand-drawn wireframes into production-ready websites.",
