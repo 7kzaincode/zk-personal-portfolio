@@ -134,7 +134,7 @@ const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
   }, [start]);
 
   return (
-    <span className="inline-block font-mono font-medium opacity-30 text-xs md:text-lg uppercase tracking-[0.4em] italic leading-none whitespace-nowrap">
+    <span className="inline-block font-mono font-medium opacity-30 text-[10px] sm:text-sm md:text-lg uppercase tracking-[0.15em] sm:tracking-[0.3em] md:tracking-[0.4em] italic leading-none">
       {displayText}
       <span className="animate-pulse ml-4 inline-block w-[2px] h-[0.7em] bg-current align-middle opacity-20" />
     </span>

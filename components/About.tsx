@@ -31,7 +31,7 @@ const About: React.FC = () => {
       </div>
 
       <div className="mt-16 max-w-4xl mx-auto px-8 text-center">
-        <p className="text-xl md:text-3xl leading-tight opacity-40 italic font-light serif max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl lg:text-3xl leading-tight opacity-40 italic font-light serif max-w-2xl mx-auto">
           "Architecture and engineering are not just about structure, but about the visual rhythm they create in space."
         </p>
       </div>

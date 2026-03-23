@@ -42,10 +42,10 @@ const Projects: React.FC<ProjectsProps> = ({ onSelectProject, filterTech }) => {
                 onClick={() => onSelectProject(project as Project)}
                 className="group relative flex flex-col md:flex-row items-start md:items-center justify-between py-16 md:py-20 border-b border-current border-opacity-5 hover:bg-neutral-50 dark:hover:bg-neutral-900/30 transition-all cursor-pointer px-8"
               >
-                <div className="flex items-baseline gap-12 z-10">
-                  <span className="serif text-5xl md:text-[10rem] opacity-[0.04] group-hover:opacity-10 transition-opacity font-black leading-none">0{idx + 1}</span>
+                <div className="flex items-baseline gap-4 md:gap-12 z-10">
+                  <span className="serif text-3xl md:text-[10rem] opacity-[0.04] group-hover:opacity-10 transition-opacity font-black leading-none">0{idx + 1}</span>
                   <div className="space-y-4">
-                    <h3 className="serif text-4xl md:text-8xl tracking-tighter italic leading-none group-hover:translate-x-6 transition-transform duration-1000 ease-out">{project.title}</h3>
+                    <h3 className="serif text-3xl sm:text-4xl md:text-8xl tracking-tighter italic leading-none group-hover:translate-x-6 transition-transform duration-1000 ease-out">{project.title}</h3>
                     <p className="text-xs md:text-sm font-mono opacity-40 uppercase tracking-[0.4em] group-hover:translate-x-12 transition-transform duration-1000 ease-out">{project.description}</p>
                   </div>
                 </div>
@@ -65,7 +65,7 @@ const Projects: React.FC<ProjectsProps> = ({ onSelectProject, filterTech }) => {
                   })}
                 </div>
 
-                <div className="absolute right-12 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 pointer-events-none translate-x-16 group-hover:translate-x-0">
+                <div className="absolute right-12 opacity-0 group-hover:opacity-[0.03] transition-all duration-1000 pointer-events-none translate-x-16 group-hover:translate-x-0 hidden md:block">
                   <span className="serif text-[22rem] italic font-black select-none leading-none">{project.title.charAt(0)}</span>
                 </div>
               </div>

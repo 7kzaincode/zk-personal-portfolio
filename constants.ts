@@ -14,6 +14,8 @@ import sketchy from './images/sketchy.png';
 import investory from './images/inven[s]tory.png';
 import ascii from './images/ascii-art.png';
 import otto from './images/otto_removed.png';
+import toothfairy from './images/toothfairy.png';
+import scanifyImg from './images/scanify.png';
 
 
 export const NAME = "zain khan";
@@ -34,7 +36,7 @@ export const HELLOS = [
 
 export const TECH_STACK = [
   "C/C++", "Python", "React", "TypeScript", "JavaScript",
-  "Supabase", "PostgreSQL", "Tailwind CSS", "ARM Assembly",
+  "Swift", "Supabase", "PostgreSQL", "Tailwind CSS", "ARM Assembly",
   "Verilog", "Node.js", "Git", "Google Gemini API", "PHP", "SQL"
 ];
 
@@ -78,7 +80,16 @@ export const PROJECTS: DetailedProject[] = [
     link: "https://github.com/7kzaincode/otto", // update with actual link
     image: otto // update with actual image variable
   },
-{
+  {
+    id: "toothfairy",
+    title: "toothfairy",
+    description: "An AI-powered dentistry assistant that brings X-ray analysis, clinical notes extraction, and treatment planning into a single intelligent workspace for both dentists and patients.",
+    why: "Dentists deal with too many disconnected tools — imaging viewers, paper charts, CDT code references — and none of them talk to each other. Meanwhile, patients leave the office with zero understanding of what's wrong. We built toothfairy at Hack Canada 2026 to give clinicians and patients the same complete picture: current findings, treatment history, and what comes next.",
+    tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Three.js", "TensorFlow", "Google Gemini"],
+    link: "https://github.com/7kzaincode/toothfairy",
+    image: toothfairy
+  },
+  {
     id: "sketchy",
     title: "Sketchy",
     description: "An AI-powered web app that transforms hand-drawn wireframes into production-ready websites.",
@@ -104,6 +115,15 @@ export const PROJECTS: DetailedProject[] = [
     tags: ["JavaScript", "Canvas API", "HTML5", "CSS3"],
     link: "https://image-to-ascii-art.netlify.app/",
     image: ascii
+  },
+  {
+    id: "scanify",
+    title: "Scanify",
+    description: "A universal barcode interaction platform delivered as an App Clip — scan any product barcode in-store and get a tailored experience for that product and merchant.",
+    why: "Every product already has a barcode, but they've only ever served inventory systems. We asked: what if we pointed them at the customer? One Clip, one scanner, infinite experiences — from Nike shopping flows to Sephora AR try-ons to drug interaction checks. Built at Hack Canada 2026.",
+    tags: ["Swift", "SwiftUI", "ARKit", "SceneKit", "AVFoundation"],
+    link: "https://devpost.com/software/scanify-db2xms",
+    image: scanifyImg
   }
 ];
 

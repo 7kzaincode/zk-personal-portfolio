@@ -61,7 +61,7 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
           {NAME.split(' ').map((part, i) => (
             <h1
               key={i}
-              className={`text-[24vw] md:text-[16rem] font-normal serif tracking-tighter leading-[0.85] select-none lowercase transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+              className={`text-[18vw] md:text-[16rem] font-normal serif tracking-tighter leading-[0.85] select-none lowercase transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               {part}
@@ -73,33 +73,34 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
           <TypingText start={isLoaded} />
         </div>
 
-        {/* Social icons + Resume button */}
-        <div className={`flex justify-center gap-6 items-center transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Social links */}
+        <div className={`flex justify-center items-center gap-8 transition-all duration-1000 delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {SOCIAL_LINKS.filter(link => link.label !== 'resume').map((link) => (
             <a
               key={link.label}
               href={link.url}
               target="_blank"
               rel="noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:border-neutral-900 dark:hover:border-neutral-100 hover:scale-110 transition-transform duration-200"
+              className="text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300"
               aria-label={link.label}
             >
               {getIcon(link.label)}
             </a>
           ))}
 
-          {/* Resume button - matches icon style but with text */}
+          <span className="w-px h-4 bg-current opacity-10" />
+
           {SOCIAL_LINKS.filter(link => link.label === 'resume').map((link) => (
             <a
               key={link.label}
               href={link.url}
               target="_blank"
               rel="noreferrer"
-              className="h-12 px-6 flex items-center gap-2 rounded-full border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 text-[10px] font-mono uppercase tracking-[0.3em] hover:text-black dark:hover:text-white hover:border-neutral-900 dark:hover:border-neutral-100 hover:scale-110 transition-all duration-200"
+              className="text-[10px] font-mono uppercase tracking-[0.3em] text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white transition-colors duration-300 flex items-center gap-1.5"
               aria-label="Resume"
             >
               Resume
-              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M7 17L17 7M17 7H7M17 7V17" />
               </svg>
             </a>
@@ -107,10 +108,11 @@ const Hero: React.FC<HeroProps> = ({ isLoaded }) => {
         </div>
       </div>
 
-      {/* Decorative lines */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-20">
-        <div className="w-px h-16 bg-current"></div>
-        <div className="w-1.5 h-1.5 rotate-45 border border-current"></div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-50 animate-bounce" style={{ animationDuration: '2s' }}>
+        <svg className="w-5 h-5 text-black dark:text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
       </div>
     </div>
   );

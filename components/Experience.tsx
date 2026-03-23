@@ -15,13 +15,13 @@ const Experience: React.FC = () => {
                     {EXPERIENCES.map((exp, index) => (
                         <div
                             key={exp.id}
-                            className="group relative border-l border-current border-opacity-10 pl-8 hover:border-opacity-30 transition-all duration-500"
+                            className="group relative border-l border-current border-opacity-10 pl-4 md:pl-8 hover:border-opacity-30 transition-all duration-500"
                         >
                             <div className="absolute left-0 top-0 w-2 h-2 bg-current opacity-20 -translate-x-[5px] rotate-45 group-hover:opacity-60 transition-opacity"></div>
 
                             <div className="mb-6">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-2">
-                                    <h3 className="serif-display text-4xl md:text-5xl opacity-90 group-hover:opacity-100 transition-opacity">
+                                    <h3 className="serif-display text-2xl md:text-4xl lg:text-5xl opacity-90 group-hover:opacity-100 transition-opacity">
                                         {exp.company}
                                     </h3>
                                     <span className="text-xs font-mono uppercase tracking-widest opacity-30">
@@ -42,7 +42,7 @@ const Experience: React.FC = () => {
                                 )}
                             </div>
 
-                            <p className="serif text-lg leading-relaxed opacity-70 mb-6 max-w-3xl">
+                            <p className="serif text-base md:text-lg leading-relaxed opacity-70 mb-6 max-w-3xl">
                                 {exp.description}
                             </p>
 
