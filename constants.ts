@@ -84,7 +84,7 @@ export const PROJECTS: DetailedProject[] = [
     id: "toothfairy",
     title: "toothfairy",
     description: "An AI-powered dentistry assistant that brings X-ray analysis, clinical notes extraction, and treatment planning into a single intelligent workspace for both dentists and patients.",
-    why: "Dentists deal with too many disconnected tools — imaging viewers, paper charts, CDT code references — and none of them talk to each other. Meanwhile, patients leave the office with zero understanding of what's wrong. We built toothfairy at Hack Canada 2026 to give clinicians and patients the same complete picture: current findings, treatment history, and what comes next.",
+    why: "Dentists deal with too many disconnected tools — imaging viewers, paper charts, CDT code references — and none of them talk to each other. Meanwhile, patients leave the office with zero understanding of what's wrong. We built toothfairy at GenAi Genesis 2026 to give clinicians and patients the same complete picture: current findings, treatment history, and what comes next.",
     tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Three.js", "TensorFlow", "Google Gemini"],
     link: "https://github.com/7kzaincode/toothfairy",
     image: toothfairy
