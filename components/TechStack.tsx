@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { TECH_STACK } from '../constants';
 
 interface TechStackProps {
   onTechClick?: (tech: string | null) => void;
@@ -10,7 +9,7 @@ interface TechStackProps {
 const TechStack: React.FC<TechStackProps> = ({ onTechClick, selectedTech }) => {
   const groups = [
     { label: "Core / Systems", items: ["C/C++", "ARM Assembly", "Verilog", "Python"] },
-    { label: "Frontend / UI", items: ["React", "TypeScript", "JavaScript", "Tailwind CSS"] },
+    { label: "Frontend / UI", items: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS"] },
     { label: "Data / Logic", items: ["SQL", "PostgreSQL", "Supabase", "PHP", "Google Gemini API"] },
     { label: "Infrastructure", items: ["Git", "Node.js", "Vercel"] }
   ];

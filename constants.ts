@@ -3,6 +3,7 @@ import { Project, SocialLink } from './types';
 
 export interface DetailedProject extends Project {
   why: string;
+  award?: string;
 }
 
 import photo1 from './images/photo1.jpg';
@@ -20,7 +21,7 @@ import scanifyImg from './images/scanify.png';
 
 export const NAME = "zain khan";
 export const SUBTITLE = "comp-eng @uwaterloo";
-export const BIO = "I'm a first-year Computer Engineering student at the University of Waterloo. I like building software that is simple to look at and actually useful to use.";
+export const BIO = "I'm a second-year Computer Engineering student at the University of Waterloo. I like building software that is simple to look at and actually useful to use.";
 
 export const HELLOS = [
   "Hello", "Bonjour", "Hola", "Ciao",
@@ -52,21 +53,31 @@ export interface Experience {
 
 export const EXPERIENCES: Experience[] = [
   {
-    id: "kasperia",
-    company: "Kasperia",
-    role: "Full-Stack Developer",
-    period: "2023 - Present",
-    description: "Built and maintain a custom data management system for a mid-sized equipment distribution company, modernizing their workflow from paper forms to digital.",
-    tags: ["JavaScript", "Python", "SQL", "PHP"],
-    link: "https://kasperia.ca/"
+    id: "leaptools",
+    company: "Leap Tools",
+    role: "Software Engineering Intern",
+    period: "2026 - Present",
+    description: "On the bespoke team behind Roomvo, building custom enterprise web apps, including a full visual canvas editor and end-to-end product analytics.",
+    tags: ["TypeScript", "Next.js", "React", "Redux Toolkit", "Tailwind CSS", "PostHog"],
+    link: "https://www.leaptools.com/"
   },
   {
     id: "watonmous",
     company: "WATonomous",
-    role: "Software Team Member",
-    period: "2025 - Present",
-    description: "Contributing to the University of Waterloo's autonomous vehicle design team, working on perception and planning systems.",
-    tags: ["Python", "ROS2", "C++", "Autonomous Systems"]
+    role: "Robotics Software Engineer, EVE Autonomy",
+    period: "2026 - Present",
+    description: "Autonomous navigation in C++ and ROS 2: costmaps, A* path planning, and Pure Pursuit control.",
+    tags: ["C++", "ROS 2", "Path Planning", "Controls"],
+    link: "https://www.watonomous.ca/"
+  },
+  {
+    id: "kasperia",
+    company: "Kasperia",
+    role: "Software Developer (Frontend & Data)",
+    period: "2023 - Present",
+    description: "Cold-pitched them a prototype, then stayed on contract building React dashboards and automated data pipelines that cut manual reporting time 40%.",
+    tags: ["React", "JavaScript", "SQL", "Chart.js"],
+    link: "https://kasperia.ca/"
   }
 ];
 
@@ -74,6 +85,7 @@ export const PROJECTS: DetailedProject[] = [
   {
     id: "otto",
     title: "OTTO",
+    award: "1st place · LiveKit Track @ NexHACKS (CMU)",
     description: "An AI voice agent that automates GitHub, Gmail, and Google Calendar workflows through natural speech commands.",
     why: "I wanted to build something that felt like having a real assistant, not another chatbot you have to type at, but something you could just talk to while your hands are busy coding. So I made jarvis for developers :) and won 1st place LiveKit track @ NEXhacks (Carnegie Mellon University, 1500+ hackers) ",
     tags: ["Next.js", "TypeScript", "Python", "LiveKit WebRTC", "Deepgram", "Gemini 2.5 Flash", "Supabase", "Token Compression"],
@@ -83,16 +95,25 @@ export const PROJECTS: DetailedProject[] = [
   {
     id: "toothfairy",
     title: "toothfairy",
-    description: "An AI-powered dentistry assistant that brings X-ray analysis, clinical notes extraction, and treatment planning into a single intelligent workspace for both dentists and patients.",
+    description: "An AI-native dentistry assistant that brings X-ray analysis, clinical notes extraction, and treatment planning into a single intelligent workspace for both dentists and patients.",
     why: "Dentists deal with too many disconnected tools — imaging viewers, paper charts, CDT code references — and none of them talk to each other. Meanwhile, patients leave the office with zero understanding of what's wrong. We built toothfairy at GenAi Genesis 2026 to give clinicians and patients the same complete picture: current findings, treatment history, and what comes next.",
     tags: ["Next.js", "TypeScript", "Python", "FastAPI", "Three.js", "TensorFlow", "Google Gemini"],
     link: "https://github.com/7kzaincode/toothfairy",
     image: toothfairy
   },
   {
+    id: "extgen",
+    title: "the extension",
+    description: "A Chrome side panel that turns plain-English requests into installable browser extensions, generating the content scripts, files, and a packaged ZIP for you.",
+    why: "Building a browser extension should feel as quick as describing one, so extgen handles the boilerplate, validation, and packaging while you stay in the browser.",
+    tags: ["React", "TypeScript", "Chrome Extensions", "FastAPI"],
+    link: "https://github.com/7kzaincode/the-extension",
+    image: ""
+  },
+  {
     id: "sketchy",
     title: "Sketchy",
-    description: "An AI-powered web app that transforms hand-drawn wireframes into production-ready websites.",
+    description: "Turns hand-drawn wireframes into deployable websites in under a minute using multimodal AI.",
     why: "Built at DeltaHacks 2026 — we were curious if we could bridge the gap between a napkin sketch and a deployed website using multimodal AI. Turns out, you can.",
     tags: ["Next.js", "TypeScript", "MongoDB", "Gemini API"],
     link: "https://sketchywebsite.tech/",
@@ -119,7 +140,7 @@ export const PROJECTS: DetailedProject[] = [
   {
     id: "scanify",
     title: "Scanify",
-    description: "A universal barcode interaction platform delivered as an App Clip — scan any product barcode in-store and get a tailored experience for that product and merchant.",
+    description: "A universal barcode interaction platform delivered as an App Clip. Scan any product barcode in-store to get a tailored experience for that product and merchant.",
     why: "Every product already has a barcode, but they've only ever served inventory systems. We asked: what if we pointed them at the customer? One Clip, one scanner, infinite experiences — from Nike shopping flows to Sephora AR try-ons to drug interaction checks. Built at Hack Canada 2026.",
     tags: ["Swift", "SwiftUI", "ARKit", "SceneKit", "AVFoundation"],
     link: "https://devpost.com/software/scanify-db2xms",
@@ -132,7 +153,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { label: "github", url: "https://github.com/7kzaincode" },
   { label: "mail", url: "mailto:kn.zain@hotmail.com" },
   { label: "twitter", url: "https://x.com/sevenkzain" },
-  { label: "resume", url: "/zainkhanresume.pdf" }
+  { label: "resume", url: "/zain_resume_website_june2026.pdf" }
 ];
 
 export const ARTWORK = [

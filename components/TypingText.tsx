@@ -8,7 +8,7 @@ interface TypingTextProps {
 const phrases = [
   'computer engineering @ the university of waterloo',
   'one day i hope to live a simple life as a shepherd',
-  'currently mass applying to internships... plz hire me :)',
+  'software engineer intern @ leap tools',
 ];
 
 const TypingText: React.FC<TypingTextProps> = ({ start = false }) => {
