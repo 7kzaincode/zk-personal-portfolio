@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test:animation-math": "node --experimental-strip-types --test tests/animation-math.test.ts",
+    "test:animations": "node tests/ball-transitions.e2e.mjs && node tests/animations.e2e.mjs"
   },
   "dependencies": {
     "react": "^19.2.3",
@@ -14,7 +17,10 @@
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "playwright": "^1.63.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }

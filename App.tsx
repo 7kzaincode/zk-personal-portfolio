@@ -1,11 +1,6 @@
 import React from 'react';
-import { EXPERIENCES, PROJECTS, SOCIAL_LINKS, Experience } from './constants';
-
-const NAV = [
-  { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'projects', label: 'Projects' },
-];
+import PortfolioPlayground from './components/PortfolioPlayground';
+import { EXPERIENCES, PROJECTS, SOCIAL_LINKS, Experience, DetailedProject } from './constants';
 
 const SOCIAL_LABELS: Record<string, string> = {
   linkedin: 'LinkedIn',
@@ -17,13 +12,15 @@ const SOCIAL_LABELS: Record<string, string> = {
 const socialLabel = (label: string) =>
   SOCIAL_LABELS[label] ?? label.charAt(0).toUpperCase() + label.slice(1);
 
-const SectionLabel: React.FC<{ num: string; label: string }> = ({ num, label }) => (
-  <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-[#b3aca2] mb-7 flex items-center gap-3">
-    <span>{num}</span>
-    <span className="h-px w-6 bg-[#ddd6c9]" />
-    <span className="text-[#1b1b1b]">{label}</span>
-  </div>
-);
+const LINK = 'text-[#B4532A] hover:underline underline-offset-2 decoration-1';
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HIT_LINK = LINK;
+const TRACK = 0.5;
+const trackPx = () => window.innerHeight * TRACK;
+
+/* ------------------------------------------------------------------ content */
 
 const ExpItem: React.FC<{ exp: Experience }> = ({ exp }) => (
   <div>
@@ -31,183 +28,265 @@ const ExpItem: React.FC<{ exp: Experience }> = ({ exp }) => (
       <span className="text-[#1b1b1b]" style={{ fontWeight: 600 }}>
         {exp.role}
       </span>
-      <span className="font-mono text-[10px] uppercase tracking-wider text-[#9a948b] whitespace-nowrap">
-        {exp.period}
-      </span>
+      <span className="font-sans text-[12px] text-[#a8a199] whitespace-nowrap">{exp.period}</span>
     </div>
-    <div className="mb-2">
-      {exp.link ? (
-        <a
-          className="text-[#B4532A] hover:underline underline-offset-2 decoration-1"
-          href={exp.link}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {exp.company}
-        </a>
-      ) : (
-        <span>{exp.company}</span>
-      )}
-    </div>
-    <p className="text-[17px] leading-[1.6]">{exp.description}</p>
+
+    {exp.link ? (
+      <a className={LINK} href={exp.link} target="_blank" rel="noreferrer">
+        {exp.company}
+      </a>
+    ) : (
+      <span>{exp.company}</span>
+    )}
+
+    <p className="text-[17px] leading-[1.6] pt-2">{exp.description}</p>
   </div>
 );
 
-const SubLabel: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-  <p className={`font-mono text-[10px] uppercase tracking-[0.2em] text-[#9a948b] mb-5 ${className}`}>{children}</p>
+/* Projects flow down two columns on desktop, so all of them share one screen.
+   break-inside keeps a single project from splitting across the column gap. */
+const ProjectItem: React.FC<{ project: DetailedProject }> = ({ project }) => (
+  <div className="mb-7 break-inside-avoid">
+    <a href={project.link} target="_blank" rel="noreferrer" className={LINK} style={{ fontWeight: 600 }}>
+      {project.title}
+    </a>
+
+    {project.award && (
+      <p className="font-sans text-[12px] text-[#B4532A] mt-0.5">{project.award}</p>
+    )}
+
+    <p className="text-[16px] leading-[1.55] mt-1">{project.description}</p>
+    <p className="font-sans text-[12px] text-[#b3aca2] mt-1.5">
+      {project.tags.slice(0, 4).join(' · ')}
+    </p>
+  </div>
 );
 
+const About = () => (
+  <div>
+    <p className="mb-5">
+      I'm a Computer Engineering student at the{' '}
+      <a data-hit="uw" className={HIT_LINK} href="https://uwaterloo.ca/" target="_blank" rel="noreferrer">
+        University of Waterloo
+      </a>
+      , focused on robotics, hardware, and software for physical systems.
+    </p>
+    <p className="mb-5">
+      I just wrapped up my co-op at{' '}
+      <a data-hit="leap" className={HIT_LINK} href="https://www.leaptools.com/" target="_blank" rel="noreferrer">
+        Leap Tools
+      </a>
+      , building bespoke apps.
+    </p>
+    <p className="mb-5">
+      Eventually I'd like to work on{' '}
+      <a
+        data-hit="robots"
+        className={HIT_LINK}
+        href="https://en.wikipedia.org/wiki/Ultimate_Robot_Knock-out_Legend"
+        target="_blank"
+        rel="noreferrer"
+      >
+        robots
+      </a>
+      , ideally the kind that can hit back.
+    </p>
+    <p>
+      You can reach me on{' '}
+      <a data-hit="x" className={HIT_LINK} href="https://x.com/sevenkzain" target="_blank" rel="noreferrer">
+        X
+      </a>{' '}
+      or{' '}
+      <a data-hit="email" className={HIT_LINK} href="mailto:kn.zain@hotmail.com">
+        email
+      </a>
+      , either works.
+    </p>
+  </div>
+);
+
+const SECTIONS = [
+  { id: 'about', label: 'About', render: () => <About /> },
+  {
+    id: 'experience',
+    label: 'Experience',
+    render: () => (
+      <div className="space-y-8">
+        {EXPERIENCES.map((exp) => (
+          <ExpItem key={exp.id} exp={exp} />
+        ))}
+      </div>
+    ),
+  },
+  {
+    id: 'projects',
+    label: 'Projects',
+    render: () => (
+      <div className="md:columns-2 md:gap-x-14">
+        {PROJECTS.map((project) => (
+          <ProjectItem key={project.id} project={project} />
+        ))}
+      </div>
+    ),
+  },
+];
+
 const App: React.FC = () => {
-  const [active, setActive] = React.useState('about');
+  const [active, setActive] = React.useState(0);
 
-  const current = EXPERIENCES.filter((e) => /present/i.test(e.period));
-  const past = EXPERIENCES.filter((e) => !/present/i.test(e.period));
-
+  /* The whole stage is designed against a 1440px canvas and scaled with a
+     transform so any browser width sees the same proportions. transform, not
+     CSS zoom: transform's getBoundingClientRect semantics are standardized
+     (rects come back in visual pixels), so the ball's word-targeting agrees
+     with its unscaled canvas in every browser. The wrapper is laid out at the
+     perceived (unscaled) viewport size and scaled down/up from the top-left;
+     the Projects glide rides in the same transform, in design pixels, and the
+     CSS transition on .stage-scale animates both. */
   React.useEffect(() => {
-    const ids = ['about', 'experience', 'projects'];
-    const onScroll = () => {
-      const line = window.innerHeight * 0.3; // detection line, 30% down the viewport
-      let current = ids[0];
-      for (const id of ids) {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= line) current = id;
+    const el = document.querySelector<HTMLElement>('.stage-scale');
+    if (!el) return;
+    const apply = () => {
+      if (window.innerWidth < 768) {
+        el.style.width = '';
+        el.style.height = '';
+        el.style.transform = '';
+        el.style.transformOrigin = '';
+        return;
       }
-      setActive(current);
+      // Dampened: the stage grows at about half the viewport's rate, so a big
+      // monitor gets comfortably larger type rather than accessibility-mode
+      // type. 2560px wide lands near 1.43x instead of a linear 1.78x.
+      const k = Math.min(1.5, Math.max(0.92, 1 + (window.innerWidth / 1440 - 1) * 0.55));
+      el.style.width = `${window.innerWidth / k}px`;
+      el.style.height = `${window.innerHeight / k}px`;
+      el.style.transformOrigin = 'top left';
+      el.style.transform = `scale(${k}) translateX(${active === 2 ? -127 : 0}px)`;
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    apply();
+    window.addEventListener('resize', apply);
+    return () => window.removeEventListener('resize', apply);
+  }, [active]);
+
+  /* A refresh should always land on About. Browsers otherwise restore the old
+     scroll position, which here means reopening on whichever section you left. */
+  React.useEffect(() => {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
   }, []);
 
+  /* A 1px line across the middle of the viewport. Whichever scroll track crosses
+     it owns the screen. No scroll handler, no layout reads, and because the
+     content is fixed, nothing on screen ever moves. */
+  React.useEffect(() => {
+    const tracks = Array.from(document.querySelectorAll<HTMLElement>('[data-track]'));
+    if (!tracks.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(Number(entry.target.getAttribute('data-track')));
+          }
+        }
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+
+    tracks.forEach((t) => io.observe(t));
+    return () => io.disconnect();
+  }, []);
+
+  const jumpTo = (e: React.MouseEvent, i: number) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: i * trackPx(),
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+    });
+  };
+
+  const pad = `${((1 - TRACK) / 2) * 100}vh`;
+  const track = `${TRACK * 100}vh`;
+
   return (
-    <div className="min-h-screen bg-[#FBF8F1] text-[#57534c]">
-      <div className="max-w-4xl mx-auto px-6 md:px-10 pt-16 md:pt-28 pb-10 grid md:grid-cols-[180px_1fr] gap-12 md:gap-20">
+    <div className="bg-[#FBF8F1] text-[#57534c]">
+      <PortfolioPlayground />
 
-        {/* ----------  Sidebar  ---------- */}
-        <aside className="reveal md:sticky md:top-28 md:self-start space-y-6">
-          <h1 className="font-serif text-[#1b1b1b] text-[28px] leading-none" style={{ fontWeight: 600 }}>
-            Zain Khan
-          </h1>
+      {/* ----------  The stage: fixed, so nothing here ever moves  ---------- */}
+      <div className="reveal fixed inset-0 z-10 pointer-events-none">
+        <div className="stage-scale h-full">
+          <div className="h-full max-w-4xl mx-auto px-6 md:px-10 grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-[180px_1fr] gap-6 md:gap-20 pt-16 md:pt-0">
 
-          <nav className="flex md:flex-col gap-5 md:gap-2.5 font-mono text-[12px]">
-            {NAV.map((n) => (
-              <a
-                key={n.id}
-                href={`#${n.id}`}
-                className={`transition-colors w-fit ${
-                  active === n.id ? 'text-[#B4532A]' : 'text-[#57534c] hover:text-[#B4532A]'
-                }`}
-              >
-                {n.label}
-              </a>
-            ))}
-          </nav>
+          <aside className="pointer-events-auto md:self-center space-y-6">
+            <h1 className="font-serif text-[#1b1b1b] text-[28px] leading-none w-fit" style={{ fontWeight: 600 }}>
+              Zain Khan
+            </h1>
 
-          <div className="flex flex-wrap md:flex-col gap-x-4 gap-y-1.5 font-mono text-[11px] md:pt-2">
-            {SOCIAL_LINKS.map((s) => (
-              <a
-                key={s.label}
-                href={s.url}
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#9a948b] hover:text-[#B4532A] transition-colors w-fit"
-              >
-                {socialLabel(s.label)}
-              </a>
-            ))}
+            <nav className="flex md:flex-col gap-5 md:gap-2 font-sans text-[13px]">
+              {SECTIONS.map((s, i) => (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  onClick={(e) => jumpTo(e, i)}
+                  className={`transition-colors w-fit ${
+                    active === i ? 'text-[#B4532A]' : 'text-[#57534c] hover:text-[#B4532A]'
+                  }`}
+                >
+                  {s.label}
+                </a>
+              ))}
+            </nav>
+
+            <div className="flex flex-wrap md:flex-col gap-x-4 gap-y-1 font-sans text-[12px] md:pt-2">
+              {SOCIAL_LINKS.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[#a8a199] hover:text-[#B4532A] transition-colors w-fit"
+                >
+                  {socialLabel(s.label)}
+                </a>
+              ))}
+            </div>
+          </aside>
+
+          {/* Every section occupies the same box. Only opacity changes. */}
+          <div className="relative min-h-0">
+            {SECTIONS.map((s, i) => {
+              const on = active === i;
+              return (
+                <section
+                  key={s.id}
+                  aria-hidden={!on}
+                  inert={!on}
+                  className={`stage-section absolute inset-0 flex flex-col overflow-y-auto font-serif text-[19px] leading-[1.6] ${
+                    s.id === 'projects' ? 'md:w-[810px]' : ''
+                  } ${on ? 'pointer-events-auto' : 'pointer-events-none'}`}
+                  style={{
+                    opacity: on ? 1 : 0,
+                    // the outgoing text clears out before the incoming text arrives,
+                    // so the two never sit on top of each other half-lit
+                    transition: on
+                      ? 'opacity 190ms cubic-bezier(.2,.6,.2,1) 110ms'
+                      : 'opacity 110ms cubic-bezier(.2,.6,.2,1)',
+                  }}
+                >
+                  {s.render()}
+                </section>
+              );
+            })}
           </div>
-        </aside>
-
-        {/* ----------  Content  ---------- */}
-        <main className="font-serif text-[19px] leading-[1.7] space-y-16">
-
-          {/* About */}
-          <section id="about" className="reveal scroll-mt-28" style={{ animationDelay: '120ms' }}>
-            <SectionLabel num="01" label="About" />
-            <p className="mb-5">
-              I'm a Computer Engineering student at the{' '}
-              <a className="text-[#B4532A] hover:underline underline-offset-2 decoration-1" href="https://uwaterloo.ca/" target="_blank" rel="noreferrer">
-                University of Waterloo
-              </a>
-              , focused on robotics, hardware, and software for physical systems.
-            </p>
-            <p className="mb-5">
-              Currently, I'm building enterprise web apps at{' '}
-              <a className="text-[#B4532A] hover:underline underline-offset-2 decoration-1" href="https://www.leaptools.com/" target="_blank" rel="noreferrer">
-                Leap Tools
-              </a>
-              . At this stage I'm trying to build range: writing production software, learning how real
-              systems are designed, and slowly moving closer to the kind of work where code touches the
-              world instead of just living on a screen.
-            </p>
-            <p>
-              Long term, I want to work in robotics and hardware-adjacent AI, somewhere between software,
-              machines, and the real world.
-            </p>
-          </section>
-
-          {/* Experience */}
-          <section id="experience" className="reveal scroll-mt-28" style={{ animationDelay: '240ms' }}>
-            <SectionLabel num="02" label="Experience" />
-
-            <div className="space-y-9">
-              {current.map((exp) => (
-                <ExpItem key={exp.id} exp={exp} />
-              ))}
-            </div>
-
-            {past.length > 0 && (
-              <>
-                <SubLabel className="mt-12">Previously</SubLabel>
-                <div className="space-y-9">
-                  {past.map((exp) => (
-                    <ExpItem key={exp.id} exp={exp} />
-                  ))}
-                </div>
-              </>
-            )}
-          </section>
-
-          {/* Projects */}
-          <section id="projects" className="reveal scroll-mt-28" style={{ animationDelay: '360ms' }}>
-            <SectionLabel num="03" label="Projects" />
-            <div className="space-y-8">
-              {PROJECTS.map((project) => (
-                <div key={project.id}>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-[#B4532A] hover:underline underline-offset-2 decoration-1"
-                    style={{ fontWeight: 600 }}
-                  >
-                    {project.title}
-                  </a>
-                  {project.award && (
-                    <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#B4532A] font-medium mt-1.5">
-                      ★ {project.award}
-                    </p>
-                  )}
-                  <p className="text-[17px] leading-[1.6] mt-0.5">{project.description}</p>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-[#b3aca2] mt-1.5">
-                    {project.tags.slice(0, 4).join(' · ')}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-        </main>
-      </div>
-
-      {/* Ceiling: content vanishes into the cream before it reaches the Zain Khan line.
-          Mirrors the main grid so the cover sits only over the content column. */}
-      <div className="hidden md:block fixed top-0 inset-x-0 z-40 pointer-events-none">
-        <div className="max-w-4xl mx-auto px-10 grid grid-cols-[180px_1fr] gap-20">
-          <div />
-          <div className="h-32 bg-gradient-to-b from-[#FBF8F1] from-80% to-transparent" />
+          </div>
         </div>
       </div>
+
+      {/* ----------  Scroll tracks: invisible, they only give the page length  ---------- */}
+      <div style={{ height: pad }} aria-hidden="true" />
+      {SECTIONS.map((s, i) => (
+        <div key={s.id} id={s.id} data-track={i} style={{ height: track }} aria-hidden="true" />
+      ))}
+      <div style={{ height: pad }} aria-hidden="true" />
     </div>
   );
 };

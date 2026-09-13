@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.pw*.mjs
+.gstack/
+test-results/
+.repo-work/animation-assessment-2026-09-13/

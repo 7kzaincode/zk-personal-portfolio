@@ -56,8 +56,8 @@ export const EXPERIENCES: Experience[] = [
     id: "leaptools",
     company: "Leap Tools",
     role: "Software Engineering Intern",
-    period: "2026 - Present",
-    description: "On the bespoke team behind Roomvo, building custom enterprise web apps, including a full visual canvas editor and end-to-end product analytics.",
+    period: "2026",
+    description: "Shipped shopper-facing commerce work on the Roomvo AR visualizer in TypeScript, React, and Next.js, and prototyped Surface Designer, a client-side alternative to the C++ pattern-generation backend.",
     tags: ["TypeScript", "Next.js", "React", "Redux Toolkit", "Tailwind CSS", "PostHog"],
     link: "https://www.leaptools.com/"
   },
@@ -65,7 +65,7 @@ export const EXPERIENCES: Experience[] = [
     id: "watonmous",
     company: "WATonomous",
     role: "Robotics Software Engineer, EVE Autonomy",
-    period: "2026 - Present",
+    period: "2025",
     description: "Autonomous navigation in C++ and ROS 2: costmaps, A* path planning, and Pure Pursuit control.",
     tags: ["C++", "ROS 2", "Path Planning", "Controls"],
     link: "https://www.watonomous.ca/"
@@ -74,7 +74,7 @@ export const EXPERIENCES: Experience[] = [
     id: "kasperia",
     company: "Kasperia",
     role: "Software Developer (Frontend & Data)",
-    period: "2023 - Present",
+    period: "2023",
     description: "Cold-pitched them a prototype, then stayed on contract building React dashboards and automated data pipelines that cut manual reporting time 40%.",
     tags: ["React", "JavaScript", "SQL", "Chart.js"],
     link: "https://kasperia.ca/"

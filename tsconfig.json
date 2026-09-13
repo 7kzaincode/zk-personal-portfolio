@@ -25,5 +25,7 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "include": ["*.ts", "*.tsx", "components/**/*.ts", "components/**/*.tsx", "tests/**/*.ts"],
+  "exclude": ["node_modules", "dist", "test-results", ".repo-work"]
 }

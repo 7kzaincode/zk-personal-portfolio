@@ -15,7 +15,7 @@
         extend: {
           fontFamily: {
             serif: ['Newsreader', 'Georgia', 'serif'],
-            mono: ['"IBM Plex Mono"', 'monospace'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
           }
         }
       }
@@ -24,10 +24,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
-    html { scroll-behavior: smooth; }
     body {
       font-family: 'Newsreader', Georgia, serif;
       -webkit-font-smoothing: antialiased;
@@ -40,18 +39,73 @@
     }
     ::-webkit-scrollbar { display: none; }
 
+    /* type settles into focus rather than sliding in from below */
     @keyframes reveal {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: none; }
+      from { opacity: 0; filter: blur(7px); }
+      to   { opacity: 1; filter: blur(0); }
     }
     .reveal {
       opacity: 0;
-      animation: reveal .8s cubic-bezier(.2, .6, .2, 1) both;
+      animation: reveal .9s cubic-bezier(.2, .6, .2, 1) both;
     }
 
+    /* The content sits still. Scrolling only swaps which section is showing, so
+       nothing ever slides; sections crossfade in place. */
+    .stage-section {
+      justify-content: safe center;   /* never push content up off the screen */
+      scrollbar-width: none;          /* an expanded section scrolls, without a bar */
+    }
+
+    /* Everything is designed against a 1440px-wide canvas. The stage is scaled
+       with transform (never CSS zoom: its getBoundingClientRect semantics vary
+       by browser, which made the ball aim at the wrong places) so any browser
+       width sees the same proportions. Inside the scale the perceived viewport
+       is ~1440px, which is why the Projects width can be a fixed 810px. The
+       scale, and the leftward glide when Projects owns the screen, are one
+       JS-composed transform; this transition animates both. */
+    @media (min-width: 768px) {
+      .stage-scale {
+        transition: transform 500ms cubic-bezier(.2, .6, .2, 1);
+      }
+    }
+
+    /* The five links the ball lights up. They default to the accent colour, so
+       if the script never runs they simply look like ordinary links. The script
+       dims them itself before the throw and undims one per hit. */
+    [data-hit] { position: relative; transition: color 420ms cubic-bezier(.2, .6, .2, 1); }
+    [data-hit].dim { color: #57534c; }
+
+    /* The word takes the hit: a couple of pixels down, then a small overshoot
+       back. Relative top rather than a transform, because a transform needs
+       inline-block, and that would change where a long phrase is allowed to
+       wrap. Relative offsets do not disturb the surrounding text at all. */
+    @keyframes word-recoil {
+      0%   { top: 0; }
+      22%  { top: 3px; }
+      55%  { top: -1px; }
+      100% { top: 0; }
+    }
+    [data-hit].hit { animation: word-recoil 260ms cubic-bezier(.25, .8, .3, 1); }
+
+    /* The word and ball share the JavaScript catapult timeline. */
+    [data-hit="email"] { display: inline-block; }
+    .playground-canvas { position: fixed; inset: 0; z-index: 20; pointer-events: none; }
+    .ball-target { position: fixed; left: 0; top: 0; width: 44px; height: 44px; z-index: 21; border: 0; padding: 0; background: transparent; border-radius: 50%; touch-action: none; }
+    .ball-target[hidden] { display: none; }
+    .ball-target:focus-visible { outline: 1px solid #B4532A; outline-offset: 2px; }
+    .playground-controls { position: fixed; bottom: 18px; right: 24px; z-index: 30; font-family: Inter, sans-serif; font-size: 11px; color: #847b70; }
+    .playground-controls button { padding: 9px 10px; min-height: 36px; background: #fbf8f1e6; border-radius: 3px; }
+    .playground-controls button:hover { color: #B4532A; }
+    .playground-controls button:focus-visible { outline: 1px solid #B4532A; outline-offset: 2px; }
+    .playground-controls span { font-size: 15px; margin: 0 3px; }
+    @media (max-width: 767px) { .playground-controls { right: 12px; bottom: 8px; } }
+
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
       .reveal { animation: none; opacity: 1; }
+      .stage-section { transition: none !important; }
+      [data-hit] { transition: none; }
+      [data-hit].hit { animation: none; }
+      [data-hit].dim { color: #B4532A; }
     }
   </style>
   <script type="importmap">

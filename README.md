@@ -31,7 +31,7 @@ The site highlights:
 | UI | React 19 + TypeScript |
 | Build tooling | Vite 6 |
 | Styling | Tailwind CSS via CDN + scoped CSS |
-| Typography | Newsreader + IBM Plex Mono |
+| Typography | Newsreader + Inter |
 | Deployment output | Static files in `dist/` |
 
 The portfolio has no backend, database, or required environment variables.
@@ -81,7 +81,7 @@ When adding a project, follow the `DetailedProject` shape in `constants.ts`: giv
 .
 ├── App.tsx              # Active single-page layout and section navigation
 ├── constants.ts         # Experience, project, and social-link content
-├── components/          # Reusable and earlier portfolio UI components
+├── components/          # Playground, animation modules, and earlier UI components
 ├── images/              # Project and gallery artwork
 ├── public/              # Files copied directly into the production build
 ├── index.html           # Document metadata, fonts, Tailwind config, global CSS
@@ -92,7 +92,7 @@ When adding a project, follow the `DetailedProject` shape in `constants.ts`: giv
 
 ## Design notes
 
-- **Editorial hierarchy:** Newsreader handles long-form content while IBM Plex Mono labels navigation, dates, and tags.
+- **Editorial hierarchy:** Newsreader handles long-form content while Inter labels navigation, dates, and tags.
 - **Deliberate restraint:** A cream background, warm orange accent, and narrow content measure keep the work readable.
 - **Responsive by default:** The sidebar becomes a compact horizontal index on smaller screens.
 - **Motion with an escape hatch:** Reveal effects are disabled through `prefers-reduced-motion`.
@@ -104,6 +104,19 @@ When adding a project, follow the `DetailedProject` shape in `constants.ts`: giv
 | `npm run dev` | Start the development server on port 3000 |
 | `npm run build` | Create the production build |
 | `npm run preview` | Serve the production build locally |
+| `npm run typecheck` | Check source and test types without scanning generated builds |
+| `npm run test:animation-math` | Check throw velocity and hold-to-drop behavior |
+| `npm run test:animations` | Exercise desktop, mobile, mouse, keyboard, touch, and reduced motion in Chromium |
+
+## Ball interaction
+
+The ball follows the About links, uses the email word as a catapult, and settles into a draggable toy. Catch it at any point; flick to throw or hold still before release to drop it. Focus the ball and use the arrow keys or Space to bounce it. **Replay ball** returns to About and restarts the sequence.
+
+The **robots** link opens its original Ultimate Robot Knock-out Legend page. There is no robot animation. Reduced-motion preferences hide the ball.
+
+`components/PortfolioPlayground.tsx` owns lifecycle and input; `components/animation/ball.ts` owns the ball. Email contact uses the visible font bounds rather than the line-height box. No animation framework or physics dependency is required.
+
+The tests require Node 22.14+ and the local dev server on port 3000. If Chromium is missing, run `npx playwright install --only-shell chromium` once. Browser screenshots and videos are saved under the ignored `test-results/animations/` directory. Run the math tests and browser tests after changing ball motion or pointer input.
 
 ## Contact
 
