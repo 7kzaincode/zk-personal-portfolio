@@ -85,7 +85,9 @@ export class Ball {
     for (const el of this.recoils.keys()) el.classList.remove('hit');
     this.recoils.clear();
     if (this.phase !== 'rest' && this.phase !== 'held' && this.phase !== 'waiting') {
-      this.release({ x: clamp(this.vx, -180, 180), y: clamp(this.vy, -180, 220) });
+      // Preserve real momentum on handoff: the old +-180 clamp collapsed a
+      // ~1500px/s story flight to a crawl, reading as a mid-air stall.
+      this.release({ x: clamp(this.vx, -800, 800), y: clamp(this.vy, -600, 800) });
     }
   }
   rest() {
@@ -98,7 +100,14 @@ export class Ball {
     this.previous = { x: this.x, y: this.y };
   }
   release(velocity: Point) { this.phase = 'free'; this.vx = velocity.x; this.vy = velocity.y; this.accumulator = 0; this.previous = { x: this.x, y: this.y }; }
-  dispose() { this.interrupt(); this.phase = 'rest'; }
+  // Teardown must NOT relight the words: React StrictMode disposes and
+  // remounts in dev, and lighting here would repaint them orange during the
+  // pre-intro wait - the exact flash the render-time dim exists to prevent.
+  dispose() {
+    this.resetWord(); this.flight = null; this.trail = [];
+    for (const el of this.recoils.keys()) el.classList.remove('hit');
+    this.recoils.clear(); this.phase = 'rest';
+  }
 
   private land() {
     const key = ORDER[this.leg];

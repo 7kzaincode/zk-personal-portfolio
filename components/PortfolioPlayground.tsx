@@ -71,8 +71,13 @@ export default function PortfolioPlayground() {
       render();
     };
     const onScroll = () => {
-      if (window.scrollY > height * 0.25) {
-        clearInitial(); window.clearTimeout(settleTimer); cancelGrab(); ball.interrupt();
+      if (window.scrollY <= height * 0.25) return;
+      clearInitial(); window.clearTimeout(settleTimer); cancelGrab();
+      // Only the choreography concedes to scrolling. A free ball is left
+      // entirely alone: interrupting it re-clamped its velocity on every
+      // scroll event, which visibly froze it mid-air during section swaps.
+      if (ball.phase === 'flight' || ball.phase === 'windup' || ball.phase === 'roll') {
+        ball.interrupt();
         wake();
       }
     };
@@ -109,6 +114,12 @@ export default function PortfolioPlayground() {
       event.preventDefault(); clearInitial(); window.clearTimeout(settleTimer); ball.interrupt(); ball.release(impulse[event.key]); wake();
     };
     const escape = (event: KeyboardEvent) => { if (event.key === 'Escape') stop(); };
+    // A drag that starts on empty page space must not begin a text selection;
+    // a drag that starts on actual text still selects normally.
+    const guardSelection = (event: PointerEvent) => {
+      const el = event.target as HTMLElement | null;
+      if (el && !el.closest('p, a, h1, nav, span, button, input, textarea')) event.preventDefault();
+    };
     const hover = () => { ball.hovered = true; render(); };
     const leave = () => { ball.hovered = false; render(); };
     const api: Controls = {
@@ -123,6 +134,7 @@ export default function PortfolioPlayground() {
     target.addEventListener('focus', hover); target.addEventListener('blur', leave);
     window.addEventListener('resize', resize); window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('keydown', escape); document.addEventListener('visibilitychange', onVisibility); media.addEventListener('change', onMotion);
+    window.addEventListener('pointerdown', guardSelection);
     document.fonts.addEventListener('loadingdone', onFontsLoaded);
     resize(); onMotion();
     Promise.race([document.fonts.ready, new Promise(resolve => window.setTimeout(resolve, 1600))]).then(() => {
@@ -137,6 +149,7 @@ export default function PortfolioPlayground() {
       target.removeEventListener('pointerenter', hover); target.removeEventListener('pointerleave', leave); target.removeEventListener('focus', hover); target.removeEventListener('blur', leave);
       window.removeEventListener('resize', resize); window.removeEventListener('scroll', onScroll);
       window.removeEventListener('keydown', escape); document.removeEventListener('visibilitychange', onVisibility); media.removeEventListener('change', onMotion);
+      window.removeEventListener('pointerdown', guardSelection);
       document.fonts.removeEventListener('loadingdone', onFontsLoaded);
       controls.current = null;
       if (import.meta.env.DEV) delete window.__portfolioPlayground;

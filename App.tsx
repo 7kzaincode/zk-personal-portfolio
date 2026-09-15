@@ -16,7 +16,13 @@ const LINK = 'text-[#B4532A] hover:underline underline-offset-2 decoration-1';
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const HIT_LINK = LINK;
+/* The ball lights these words on its way in. They must render already dim on
+   the very first paint: dimming them later from the intro (which waits on
+   fonts) paints them orange for a beat and then fades them - the flash. With
+   reduced motion the intro never runs, so they render lit. */
+const START_DIM =
+  typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HIT_LINK = `${LINK}${START_DIM ? ' dim' : ''}`;
 const TRACK = 0.5;
 const trackPx = () => window.innerHeight * TRACK;
 
