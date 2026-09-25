@@ -97,7 +97,7 @@ export const PROJECTS: DetailedProject[] = [
     id: "teachar",
     title: "teachAR",
     description: "A mixed-reality tutor for Meta Quest that lets an expert record a physical task once, then guides learners with translucent ghost hands in their own workspace.",
-    why: "Most how-tos stop at a video — pause, rewind, squint at someone else's hands. teachAR (Trail) flips that: you record the motion in WebXR, then follow articulated ghosts and checkpoints at your own pace on a Quest 3S, with voice coaching when you ask if you're doing it right. Built as a TypeScript monorepo spanning Quest Browser, Three.js, and Fastify backends for pairing, vision, and live coaching.",
+    why: "Most how-tos stop at a video — pause, rewind, squint at someone else's hands. teachAR flips that: you record the motion in WebXR, then follow articulated ghosts and checkpoints at your own pace on a Quest 3S, with voice coaching when you ask if you're doing it right. Built as a TypeScript monorepo spanning Quest Browser, Three.js, and Fastify backends for pairing, vision, and live coaching.",
     tags: ["WebXR", "Three.js", "TypeScript", "Fastify", "Meta Quest"],
     link: "https://github.com/7kzaincode/teachAR",
     image: teachar
