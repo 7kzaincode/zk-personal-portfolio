@@ -17,6 +17,7 @@ import ascii from './images/ascii-art.png';
 import otto from './images/otto_removed.png';
 import toothfairy from './images/toothfairy.png';
 import scanifyImg from './images/scanify.png';
+import teachar from './images/teachar.jpg';
 
 
 export const NAME = "zain khan";
@@ -91,6 +92,15 @@ export const PROJECTS: DetailedProject[] = [
     tags: ["Next.js", "TypeScript", "Python", "LiveKit WebRTC", "Deepgram", "Gemini 2.5 Flash", "Supabase", "Token Compression"],
     link: "https://github.com/7kzaincode/otto", // update with actual link
     image: otto // update with actual image variable
+  },
+  {
+    id: "teachar",
+    title: "teachAR",
+    description: "A mixed-reality tutor for Meta Quest that lets an expert record a physical task once, then guides learners with translucent ghost hands in their own workspace.",
+    why: "Most how-tos stop at a video — pause, rewind, squint at someone else's hands. teachAR (Trail) flips that: you record the motion in WebXR, then follow articulated ghosts and checkpoints at your own pace on a Quest 3S, with voice coaching when you ask if you're doing it right. Built as a TypeScript monorepo spanning Quest Browser, Three.js, and Fastify backends for pairing, vision, and live coaching.",
+    tags: ["WebXR", "Three.js", "TypeScript", "Fastify", "Meta Quest"],
+    link: "https://github.com/7kzaincode/teachAR",
+    image: teachar
   },
   {
     id: "toothfairy",
