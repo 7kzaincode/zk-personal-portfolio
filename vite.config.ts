@@ -36,8 +36,8 @@ const outreachPages = (): Plugin => ({
         ...(hasCard
           ? [
               `<meta property="og:image" content="${SITE}/og/${slug}.png" />`,
-              `<meta property="og:image:width" content="1200" />`,
-              `<meta property="og:image:height" content="630" />`,
+              `<meta property="og:image:width" content="2400" />`,
+              `<meta property="og:image:height" content="1260" />`,
               `<meta name="twitter:card" content="summary_large_image" />`,
               `<meta name="twitter:image" content="${SITE}/og/${slug}.png" />`,
             ]

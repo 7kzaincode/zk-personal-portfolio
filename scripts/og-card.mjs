@@ -21,7 +21,7 @@ try {
       '--headless=new',
       `--user-data-dir=${profile}`,
       '--hide-scrollbars',
-      '--force-device-scale-factor=1',
+      '--force-device-scale-factor=2', // 2400x1260, so it stays sharp on retina screens
       '--window-size=1200,630',
       '--virtual-time-budget=6000',
       `--screenshot=${out}`,

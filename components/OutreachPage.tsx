@@ -92,25 +92,25 @@ const Typed: React.FC<{ segs: Seg[]; count: number; caret: boolean }> = ({ segs,
 /* The picture a link preview shows (LinkedIn, iMessage, Slack). Rendered at
    /<slug>?card and photographed by `npm run og -- <slug>`. */
 export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = ({ letter, slug }) => (
-  <div className="fixed left-0 top-0 w-[1200px] h-[630px] bg-[#FBF8F1] text-[#57534c] px-[84px] pt-[70px] flex flex-col">
-    <div className="font-sans text-[22px] leading-[1.8] pb-7 border-b-2 border-[#e9e3d6]">
+  <div className="fixed left-0 top-0 w-[1200px] h-[630px] bg-[#FBF8F1] text-[#57534c] px-[80px] pt-[56px] flex flex-col">
+    <div className="font-sans text-[30px] leading-[1.6] pb-7 border-b-2 border-[#e9e3d6]">
       {[
         ['from', 'Zain Khan'],
         ['to', letter.to],
       ].map(([k, v]) => (
         <div key={k} className="flex gap-8">
-          <span className="w-14 text-[#a8a199]">{k}</span>
+          <span className="w-20 text-[#a8a199]">{k}</span>
           <span>{v}</span>
         </div>
       ))}
     </div>
-    <p className="font-serif text-[#1b1b1b] text-[72px] leading-[1.14] mt-11 max-w-[960px]" style={{ fontWeight: 500 }}>
+    <p className="font-serif text-[#1b1b1b] text-[80px] leading-[1.12] mt-9 max-w-[1040px]" style={{ fontWeight: 500 }}>
       {letter.subject}
       <span className="inline-block w-[4px] h-[0.9em] ml-2 bg-[#B4532A] align-baseline translate-y-[0.1em]" />
     </p>
-    <div className="mt-auto pb-[58px] flex items-center justify-between font-sans text-[24px]">
+    <div className="mt-auto pb-[52px] flex items-center justify-between font-sans text-[32px]">
       <span className="text-[#B4532A]">zainkhan.dev/{slug}</span>
-      <span className="w-[30px] h-[30px] rounded-full bg-[#B4532A]" />
+      <span className="w-[36px] h-[36px] rounded-full bg-[#B4532A]" />
     </div>
   </div>
 );
