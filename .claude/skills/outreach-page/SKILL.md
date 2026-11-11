@@ -12,7 +12,9 @@ ZK pastes a rough message for one person. You turn it into a page at `zainkhan.d
 - `outreach/<slug>.ts` default-exports an `OutreachLetter`. That file is the page.
 - `index.tsx` globs `outreach/*.ts` and renders `components/OutreachPage.tsx` when the URL path matches a file name. Anything else is the home page.
 - `vercel.json` rewrites extensionless paths to `index.html` so the link works when opened directly.
-- The page is a plain top-left letter: a from/to/re header, then the text types itself out as the reader scrolls (the top of the letter types on load, and the last word lands exactly at the bottom of the scroll, with no empty space after the links; a letter short enough to fit on one screen just types itself out). It scrolls like a normal page, so they can scroll back up. Links (reply by email, resume, LinkedIn, site) fade in once everything is typed. It sets `noindex`.
+- The page is a plain top-left letter: a from/to/re header, then the text types itself out as the reader scrolls (the top of the letter types on load, and the last word lands exactly at the bottom of the scroll, with no empty space after the links; a letter short enough to fit on one screen just types itself out). It scrolls like a normal page, so they can scroll back up. Links (reply by email, resume, LinkedIn, site) fade in once everything is typed, and the orange ball from the home page drops onto "Reply by email". It sets `noindex`.
+- **Link preview.** `npm run og -- <slug>` photographs `/<slug>?card` into `public/og/<slug>.png` (needs the dev server on port 3000 and Google Chrome). At build, a plugin in `vite.config.ts` writes `dist/<slug>/index.html` with that person's title, description and picture, so the link shows a "for <Name>" card when pasted into LinkedIn, iMessage or Slack.
+- **Open tracking.** `index.tsx` loads Vercel Web Analytics, so the Vercel dashboard (Analytics, then filter by page `/<slug>`) shows when a letter was opened. A browser that has visited any page with `?me` once is never counted (`?me=0` undoes it); that is how ZK keeps his own visits out.
 
 Only touch `OutreachPage.tsx` if ZK asks for a design change. A design change affects every letter already sent.
 
@@ -22,9 +24,10 @@ Only touch `OutreachPage.tsx` if ZK asks for a design change. A design change af
 2. **Load `zk-voice` and `zk-outreach`** and follow them for the copy. Facts come only from the draft, `zk-outreach`'s `references/facts.md` and `phrasings.md`, or research you just did. Fill gaps in the draft (like "(what they do)") from those; never invent.
 3. **Rewrite the draft** (rules below).
 4. **Write `outreach/<slug>.ts`**, copying the shape of an existing letter.
-5. **Check it.** `npm run typecheck`, then open `http://localhost:3000/<slug>` with the `site` preview config, scroll to the end, confirm everything types out and the links appear, then scroll back to the top. Check at phone width too.
-6. **Commit** as `Add outreach page for <Name>.` Push only when ZK has said to (pushing to `main` deploys). If he said "ship it" or similar in the request, push without asking again.
-7. **Report** in a few lines: the URL, the final copy, and anything he should verify. No explanation of how it was written.
+5. **Make the preview picture.** With the `site` preview server running, `npm run og -- <slug>`, then look at `public/og/<slug>.png`: the subject must fit in two lines without crowding the footer. Shorten the subject if it doesn't.
+6. **Check it.** `npm run typecheck`, then open `http://localhost:3000/<slug>` with the `site` preview config, scroll to the end, confirm everything types out and the links appear, then scroll back to the top. Check at phone width too.
+7. **Commit** (the letter and its picture) as `Add outreach page for <Name>.` Push only when ZK has said to (pushing to `main` deploys). If he said "ship it" or similar in the request, push without asking again.
+8. **Report** in a few lines: the URL, the final copy, and anything he should verify. No explanation of how it was written.
 
 ## Slug
 

@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "og": "node scripts/og-card.mjs",
     "test:animation-math": "node --experimental-strip-types --test tests/animation-math.test.ts",
     "test:animations": "node tests/ball-transitions.e2e.mjs && node tests/animations.e2e.mjs"
   },

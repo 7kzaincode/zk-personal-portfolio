@@ -89,6 +89,137 @@ const Typed: React.FC<{ segs: Seg[]; count: number; caret: boolean }> = ({ segs,
   );
 };
 
+/* The ball from the home page. When the letter is finished it drops out of
+   the sky onto "Reply by email", which lights up when it lands, and stays
+   sitting there. It lives inside the footer (not fixed to the screen), so it
+   scrolls with the page. Hovering the link makes it hop. */
+const ReplyBall: React.FC<{ target: React.RefObject<HTMLAnchorElement | null>; go: boolean }> = ({ target, go }) => {
+  const ref = React.useRef<HTMLSpanElement>(null);
+
+  React.useEffect(() => {
+    const link = target.current;
+    const el = ref.current;
+    if (!go || !link || !el) return;
+    if (reducedMotion()) {
+      link.classList.remove('dim');
+      return;
+    }
+    const R = 9;
+    const G = 2600;
+    let raf = 0;
+    let last = 0;
+    let y = 0;
+    let vy = 0;
+    let squash = 0;
+    let resting = false;
+
+    /* Land on the ink of the word, not on the empty top of its line box. */
+    const ground = () => {
+      const style = getComputedStyle(link);
+      const ctx = document.createElement('canvas').getContext('2d')!;
+      ctx.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const m = ctx.measureText(link.textContent ?? '');
+      const line = parseFloat(style.lineHeight) || link.offsetHeight;
+      const inset =
+        (line - m.fontBoundingBoxAscent - m.fontBoundingBoxDescent) / 2 +
+        m.fontBoundingBoxAscent -
+        m.actualBoundingBoxAscent;
+      return { x: link.offsetLeft + link.offsetWidth / 2, y: link.offsetTop + inset - R - 1 };
+    };
+    const paint = () => {
+      const g = ground();
+      el.style.transform = `translate(${g.x - R}px, ${y - R}px) scale(${1 + squash}, ${1 / (1 + squash)})`;
+    };
+    const step = (now: number) => {
+      const dt = Math.min(0.032, (now - (last || now)) / 1000);
+      last = now;
+      const g = ground();
+      vy += G * dt;
+      y += vy * dt;
+      if (y >= g.y) {
+        y = g.y;
+        if (vy > 60) {
+          squash = Math.min(0.35, vy / 2600);
+          link.classList.remove('dim', 'hit');
+          void link.offsetWidth; // restart the recoil
+          link.classList.add('hit');
+        }
+        vy = vy > 140 ? -vy * 0.48 : 0;
+        resting = vy === 0;
+      }
+      squash *= 0.8;
+      paint();
+      if (!resting || squash > 0.004) raf = requestAnimationFrame(step);
+      else {
+        squash = 0;
+        paint();
+        raf = 0;
+      }
+    };
+    const launch = (speed: number) => {
+      vy = speed;
+      resting = false;
+      last = 0;
+      if (!raf) raf = requestAnimationFrame(step);
+    };
+    const hop = () => resting && launch(-430);
+    const settle = () => {
+      if (!resting) return;
+      y = ground().y;
+      paint();
+    };
+
+    const timer = window.setTimeout(() => {
+      y = ground().y - 420;
+      el.style.opacity = '1';
+      launch(0);
+    }, 650);
+    link.addEventListener('pointerenter', hop);
+    window.addEventListener('resize', settle);
+    return () => {
+      window.clearTimeout(timer);
+      cancelAnimationFrame(raf);
+      link.removeEventListener('pointerenter', hop);
+      window.removeEventListener('resize', settle);
+    };
+  }, [go, target]);
+
+  return (
+    <span
+      ref={ref}
+      aria-hidden="true"
+      className="absolute left-0 top-0 w-[18px] h-[18px] rounded-full bg-[#B4532A] pointer-events-none"
+      style={{ opacity: 0, willChange: 'transform' }}
+    />
+  );
+};
+
+/* The picture a link preview shows (LinkedIn, iMessage, Slack). Rendered at
+   /<slug>?card and photographed by `npm run og -- <slug>`. */
+export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = ({ letter, slug }) => (
+  <div className="fixed left-0 top-0 w-[1200px] h-[630px] bg-[#FBF8F1] text-[#57534c] px-[84px] pt-[70px] flex flex-col">
+    <div className="font-sans text-[22px] leading-[1.8] pb-7 border-b-2 border-[#e9e3d6]">
+      {[
+        ['from', 'Zain Khan'],
+        ['to', letter.to],
+      ].map(([k, v]) => (
+        <div key={k} className="flex gap-8">
+          <span className="w-14 text-[#a8a199]">{k}</span>
+          <span>{v}</span>
+        </div>
+      ))}
+    </div>
+    <p className="font-serif text-[#1b1b1b] text-[72px] leading-[1.14] mt-11 max-w-[960px]" style={{ fontWeight: 500 }}>
+      {letter.subject}
+      <span className="inline-block w-[4px] h-[0.9em] ml-2 bg-[#B4532A] align-baseline translate-y-[0.1em]" />
+    </p>
+    <div className="mt-auto pb-[58px] flex items-center justify-between font-sans text-[24px]">
+      <span className="text-[#B4532A]">zainkhan.dev/{slug}</span>
+      <span className="w-[30px] h-[30px] rounded-full bg-[#B4532A]" />
+    </div>
+  </div>
+);
+
 const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
   const signoff = letter.signoff ?? ['Thanks', 'Zain'];
 
@@ -114,6 +245,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
   const [typed, setTyped] = React.useState(() => (reducedMotion() ? total : 0));
   const refs = React.useRef<(HTMLElement | null)[]>([]);
   const target = React.useRef(0);
+  const replyRef = React.useRef<HTMLAnchorElement>(null);
   const done = typed >= total;
 
   React.useEffect(() => {
@@ -227,11 +359,12 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
         ))}
 
         <div
-          className="mt-7 pt-4 border-t border-[#e9e3d6] flex flex-wrap gap-x-5 gap-y-1 font-sans text-[13px] transition-opacity duration-700"
+          className="relative mt-7 pt-4 border-t border-[#e9e3d6] flex flex-wrap gap-x-5 gap-y-1 font-sans text-[13px] transition-opacity duration-700"
           style={{ opacity: done ? 1 : 0, pointerEvents: done ? 'auto' : 'none' }}
           inert={!done}
         >
-          <a className={LINK} href={mailto}>Reply by email</a>
+          <ReplyBall target={replyRef} go={done} />
+          <a ref={replyRef} data-hit="reply" className={`${LINK} dim`} href={mailto}>Reply by email</a>
           <a className={LINK} href={url('resume')} target="_blank" rel="noreferrer">Resume</a>
           <a className={LINK} href={url('linkedin')} target="_blank" rel="noreferrer">LinkedIn</a>
           <a className={LINK} href="/">The rest of my site</a>
