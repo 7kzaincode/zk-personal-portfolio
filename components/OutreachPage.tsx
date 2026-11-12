@@ -489,7 +489,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       </main>
 
       {letter.video && (
-        <aside className="lg:sticky lg:top-0 lg:flex-1 min-w-0 px-6 md:px-14 lg:pl-0 pt-10 md:pt-14">
+        <aside className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-center lg:flex-1 min-w-0 px-6 md:px-14 lg:pl-0 pt-10 md:pt-14 lg:pt-0">
           {yt ? (
             <div className="mx-auto aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]" style={{ width: fill(16 / 9) }}>
               <div ref={youtubeRef} className="w-full h-full" />
