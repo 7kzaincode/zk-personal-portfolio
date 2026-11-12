@@ -20,6 +20,10 @@ export interface OutreachLetter {
       '/video/giliat.mp4'. When set, the video sits on the right and the text
       is typed as he speaks; scrolling no longer drives anything. */
   video?: string;
+  /** True when the recording has had its background replaced with the page
+      colour (see scripts/cutout). The player then has no frame, so he seems
+      to be standing on the page. Only for a video file, not YouTube. */
+  cutout?: boolean;
   /** Optional: the second at which each line (greeting first, then each
       paragraph, then the sign-off lines) starts being spoken. Without it the
       text is spread evenly over the video's length. */
@@ -160,6 +164,45 @@ export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = 
     </div>
   </div>
 );
+
+/* A recording whose background is already the page colour. With no frame, no
+   controls bar and its edges faded out, the rectangle disappears and he is
+   simply there on the page. Click him to play or pause. */
+const Cutout: React.FC<{ src: string; videoRef: React.RefObject<HTMLVideoElement | null> }> = ({ src, videoRef }) => {
+  const [playing, setPlaying] = React.useState(false);
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) v.play();
+    else v.pause();
+  };
+  const fade =
+    'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 88%, transparent)';
+  return (
+    <div className="relative max-w-[640px]">
+      <video
+        ref={videoRef}
+        src={src}
+        playsInline
+        preload="auto"
+        onClick={toggle}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+        className="block w-full cursor-pointer"
+        style={{ WebkitMaskImage: fade, maskImage: fade, WebkitMaskComposite: 'source-in', maskComposite: 'intersect' }}
+      />
+      <button
+        type="button"
+        onClick={toggle}
+        className="absolute left-1/2 bottom-2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-[#1b1b1b] text-[#FBF8F1] font-sans text-[12px] hover:bg-[#B4532A] transition-all duration-300"
+        style={{ opacity: playing ? 0 : 1, pointerEvents: playing ? 'none' : 'auto' }}
+      >
+        ▶ play
+      </button>
+    </div>
+  );
+};
 
 const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
   const signoff = letter.signoff ?? ['Thank you.', 'Zain'];
@@ -440,6 +483,8 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
             <div className="w-full max-w-[640px] aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]">
               <div ref={youtubeRef} className="w-full h-full" />
             </div>
+          ) : letter.cutout ? (
+            <Cutout src={letter.video} videoRef={videoRef} />
           ) : (
             <video
               ref={videoRef}

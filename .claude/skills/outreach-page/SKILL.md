@@ -50,7 +50,17 @@ The page is the script ZK reads out in a one-minute video, so it has to sound li
 
 ## Video
 
-When ZK has recorded himself reading a page, he uploads it to YouTube (unlisted) and gives you the link. Add `video: '<the YouTube link>'` to that letter; any YouTube link shape works. (A file at `public/video/<slug>.mp4` also works, but videos don't belong in the repo.) The page then shows the video on the right and types the text on the left in time with it, and scrolling no longer drives anything. On video pages the name in the greeting gets a dotted underline, and hovering it shows "sorry if I said your name wrong". Check the spelling of the name against the source before publishing. If the typing drifts from his speech, add `cues`: the second at which each line starts (greeting, each paragraph, then the two sign-off lines).
+ZK records himself reading a page and gives you the file. With the dev server not required, run:
+
+```
+npm run video -- <slug> <path to the recording>
+```
+
+It cuts him out of his background (Apple's Vision framework, so macOS only; needs `swiftc` and `ffmpeg`), fills the background with the page colour, writes `public/video/<slug>.mp4` (about 3 MB a minute), and adds `video` and `cutout: true` to that letter. Expect roughly three to four minutes of processing per minute of video. Then open `http://localhost:3000/<slug>`, play it, and check the cut-out around his hair and hands and that the text keeps pace with his voice, before committing the video and the letter.
+
+On the page he appears with no player frame, as if standing on the page, and the text types in time with the video; scrolling no longer drives anything. The name in the greeting gets a dotted underline, and hovering it shows "sorry if I said your name wrong", so check the spelling of the name against the source. If the typing drifts from his speech, add `cues`: the second at which each line starts (greeting, each paragraph, then the two sign-off lines).
+
+A YouTube link also works as `video` (the player is embedded and the typing still syncs), but it has YouTube's frame and branding and cannot use the cut-out.
 
 ## The email that carries the link
 
