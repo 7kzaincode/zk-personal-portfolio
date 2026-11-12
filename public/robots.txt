@@ -6,3 +6,17 @@ Allow: /$
 Allow: /assets/
 Allow: /favicon_io
 Disallow: /
+
+# Link-preview fetchers only visit a page someone has pasted into a message,
+# and they obey robots.txt, so they need to be let in or the preview card
+# never shows.
+User-agent: LinkedInBot
+User-agent: Twitterbot
+User-agent: facebookexternalhit
+User-agent: Slackbot-LinkExpanding
+User-agent: Slackbot
+User-agent: Discordbot
+User-agent: WhatsApp
+User-agent: TelegramBot
+User-agent: Applebot
+Allow: /
