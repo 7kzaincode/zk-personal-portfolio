@@ -1,0 +1,8 @@
+# Only the home page is for crawlers. Everything else (the /name pages) is
+# off limits. They are deliberately not listed here, since a list would be a
+# map to them.
+User-agent: *
+Allow: /$
+Allow: /assets/
+Allow: /favicon_io
+Disallow: /
