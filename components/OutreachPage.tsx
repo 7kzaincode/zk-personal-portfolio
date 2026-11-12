@@ -32,7 +32,10 @@ export interface OutreachLetter {
   ps?: string;
 }
 
-const CALENDLY = 'https://calendly.com/zain-zainkhan';
+/* The embed goes straight to one meeting's calendar, not the profile page
+   that lists meeting types (that page leaves a large empty box under it).
+   Change the last part when the meeting's link changes, e.g. to '15min'. */
+const CALENDLY = 'https://calendly.com/zain-zainkhan/30min';
 
 /* The 11-character id out of any of YouTube's link shapes, or null if the
    video is not on YouTube. */
@@ -464,8 +467,8 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
           {done && (
             <iframe
               title="Book a time with Zain"
-              src={`${CALENDLY}?hide_gdpr_banner=1&background_color=fbf8f1&text_color=57534c&primary_color=b4532a`}
-              className="w-full h-[720px] border border-[#e9e3d6] rounded-[6px] bg-[#FBF8F1]"
+              src={`${CALENDLY}?hide_gdpr_banner=1&hide_event_type_details=1&background_color=fbf8f1&text_color=57534c&primary_color=b4532a`}
+              className="w-full h-[552px] border border-[#e9e3d6] rounded-[6px] bg-[#FBF8F1]"
               loading="lazy"
             />
           )}
