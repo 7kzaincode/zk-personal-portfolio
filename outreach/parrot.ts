@@ -1,0 +1,17 @@
+import type { OutreachLetter } from '../components/OutreachPage';
+
+const letter: OutreachLetter = {
+  to: "Phillip and Liam",
+  subject: "Can I please please (please) intern at Parrot?",
+  greeting: "hey Phillip and Liam,",
+  paragraphs: [
+    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I spent almost three years building what was more or less the operating system for an appliance contractor, so an agentic one for auto repair shops feels familiar.",
+    "that was at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders (and carried appliances up strangers' stairs on the days I wasn't coding).",
+    "it kept separate histories for quotes, payments, and deliveries so every price and lead time traced back to its source, and had agents draft supplier follow-ups and payment emails straight from live project state.",
+    "this summer at [Leap Tools](https://www.leaptools.com/) I led the rebuild of their surface designer from plan to production. shoppers in 80+ countries use it to design custom tile and flooring patterns.",
+    "where I think I'd help: knowing what a shop owner will actually hand over to software, and building around that.",
+    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+  ],
+};
+
+export default letter;
