@@ -34,8 +34,8 @@ export interface OutreachLetter {
 
 /* The embed goes straight to one meeting's calendar, not the profile page
    that lists meeting types (that page leaves a large empty box under it).
-   Change the last part when the meeting's link changes, e.g. to '15min'. */
-const CALENDLY = 'https://calendly.com/zain-zainkhan/30min';
+   Change the last part when the meeting's link changes, e.g. to '30min'. */
+const CALENDLY = 'https://calendly.com/zain-zainkhan/15-minutes';
 
 /* The 11-character id out of any of YouTube's link shapes, or null if the
    video is not on YouTube. */
