@@ -15,9 +15,10 @@ export interface OutreachLetter {
   paragraphs: string[];
   /** Defaults to ['Thank you.', 'Zain']. */
   signoff?: string[];
-  /** A recording of Zain saying the letter, e.g. '/video/giliat.mp4'. When
-      set, the video sits on the right and the text is typed as he speaks;
-      scrolling no longer drives anything. */
+  /** A recording of Zain saying the letter: a YouTube link (unlisted is
+      fine), e.g. 'https://youtu.be/abc123', or a file like
+      '/video/giliat.mp4'. When set, the video sits on the right and the text
+      is typed as he speaks; scrolling no longer drives anything. */
   video?: string;
   /** Optional: the second at which each line (greeting first, then each
       paragraph, then the sign-off lines) starts being spoken. Without it the
@@ -28,6 +29,31 @@ export interface OutreachLetter {
 }
 
 const CALENDLY = 'https://calendly.com/zain-zainkhan';
+
+/* The 11-character id out of any of YouTube's link shapes, or null if the
+   video is not on YouTube. */
+const youtubeId = (src?: string) =>
+  src?.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/)?.[1] ??
+  null;
+
+/* What the typing needs to know about whichever player is in use. */
+type Clock = { time: () => number; duration: () => number; ended: () => boolean };
+
+/* YouTube's player script, loaded once, on the first page that needs it. */
+let youtubeApi: Promise<any> | null = null;
+const loadYoutube = () =>
+  (youtubeApi ??= new Promise((resolve) => {
+    const w = window as any;
+    if (w.YT?.Player) return resolve(w.YT);
+    const earlier = w.onYouTubeIframeAPIReady;
+    w.onYouTubeIframeAPIReady = () => {
+      earlier?.();
+      resolve(w.YT);
+    };
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(script);
+  }));
 
 const LINK = 'text-[#B4532A] hover:underline underline-offset-2 decoration-1';
 const url = (label: string) => SOCIAL_LINKS.find((s) => s.label === label)?.url ?? '#';
@@ -173,7 +199,53 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
   const target = React.useRef(0);
   const endRef = React.useRef<HTMLDivElement>(null);
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const youtubeRef = React.useRef<HTMLDivElement>(null);
+  const clock = React.useRef<Clock | null>(null);
+  const yt = youtubeId(letter.video);
   const done = typed >= total;
+
+  /* Either player ends up behind the same three questions: what time is it,
+     how long is it, and has it finished. */
+  React.useEffect(() => {
+    if (!letter.video) return;
+    if (!yt) {
+      const v = videoRef.current;
+      if (v) clock.current = { time: () => v.currentTime, duration: () => v.duration || 0, ended: () => v.ended };
+      return;
+    }
+    let player: any;
+    let gone = false;
+    loadYoutube().then((YT) => {
+      const box = youtubeRef.current;
+      if (gone || !box) return;
+      // YouTube swaps the element it is given for its own iframe, so hand it
+      // one React does not own
+      const mount = document.createElement('div');
+      box.replaceChildren(mount);
+      player = new YT.Player(mount, {
+        videoId: yt,
+        width: '100%',
+        height: '100%',
+        host: 'https://www.youtube-nocookie.com',
+        playerVars: { rel: 0, playsinline: 1 },
+        events: {
+          onReady: () => {
+            clock.current = {
+              time: () => player.getCurrentTime?.() ?? 0,
+              duration: () => player.getDuration?.() ?? 0,
+              ended: () => player.getPlayerState?.() === 0,
+            };
+          },
+        },
+      });
+    });
+    return () => {
+      gone = true;
+      clock.current = null;
+      player?.destroy?.();
+      youtubeRef.current?.replaceChildren();
+    };
+  }, [letter.video, yt]);
 
   React.useEffect(() => {
     document.title = `for ${letter.to} · Zain Khan`;
@@ -198,20 +270,21 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
     /* With a video, the text keeps time with the speaker instead: each line
        is typed across the seconds it is spoken in. */
     const fromVideo = () => {
-      const v = videoRef.current;
-      if (!v || !v.duration) return;
-      if (v.ended) return void (target.current = total);
-      const t = v.currentTime;
+      const c = clock.current;
+      const duration = c?.duration() ?? 0;
+      if (!c || !duration) return;
+      if (c.ended()) return void (target.current = total);
+      const t = c.time();
       const cues = letter.cues;
       let n = 0;
       if (cues?.length) {
         lines.forEach((line, i) => {
-          const from = cues[i] ?? v.duration;
-          const to = cues[i + 1] ?? v.duration;
+          const from = cues[i] ?? duration;
+          const to = cues[i + 1] ?? duration;
           n += Math.round(line.len * Math.max(0, Math.min(1, (t - from) / Math.max(0.2, to - from))));
         });
       } else {
-        n = Math.round(total * Math.min(1, t / (v.duration * 0.97)));
+        n = Math.round(total * Math.min(1, t / (duration * 0.97)));
       }
       target.current = Math.max(target.current, n);
     };
@@ -363,14 +436,20 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
 
       {letter.video && (
         <aside className="lg:sticky lg:top-0 lg:flex-1 min-w-0 px-6 md:px-14 lg:pl-0 pt-10 md:pt-14">
-          <video
-            ref={videoRef}
-            src={letter.video}
-            controls
-            playsInline
-            preload="metadata"
-            className="w-full max-w-[640px] rounded-[6px] bg-[#efe9dc]"
-          />
+          {yt ? (
+            <div className="w-full max-w-[640px] aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]">
+              <div ref={youtubeRef} className="w-full h-full" />
+            </div>
+          ) : (
+            <video
+              ref={videoRef}
+              src={letter.video}
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full max-w-[640px] rounded-[6px] bg-[#efe9dc]"
+            />
+          )}
           {!done && (
             <button
               type="button"

@@ -50,7 +50,7 @@ The page is the script ZK reads out in a one-minute video, so it has to sound li
 
 ## Video
 
-When ZK has recorded himself reading a page, put the file at `public/video/<slug>.mp4` (compress it first: about 480p, a few MB) and add `video: '/video/<slug>.mp4'` to the letter. The page then shows the video on the right and types the text on the left in time with it, and scrolling no longer drives anything. On video pages the name in the greeting gets a dotted underline, and hovering it shows "sorry if I said your name wrong". Check the spelling of the name against the source before publishing. If the typing drifts from his speech, add `cues`: the second at which each line starts (greeting, each paragraph, then the two sign-off lines).
+When ZK has recorded himself reading a page, he uploads it to YouTube (unlisted) and gives you the link. Add `video: '<the YouTube link>'` to that letter; any YouTube link shape works. (A file at `public/video/<slug>.mp4` also works, but videos don't belong in the repo.) The page then shows the video on the right and types the text on the left in time with it, and scrolling no longer drives anything. On video pages the name in the greeting gets a dotted underline, and hovering it shows "sorry if I said your name wrong". Check the spelling of the name against the source before publishing. If the typing drifts from his speech, add `cues`: the second at which each line starts (greeting, each paragraph, then the two sign-off lines).
 
 ## The email that carries the link
 
