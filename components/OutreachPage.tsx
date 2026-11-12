@@ -171,8 +171,12 @@ export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = 
 /* A recording whose background is already the page colour. With no frame, no
    controls bar and its edges faded out, the rectangle disappears and he is
    simply there on the page. Click him to play or pause. */
+/* As wide as the right-hand side allows, but never taller than the screen. */
+const fill = (shape: number) => `min(100%, calc((100vh - 8rem) * ${shape}))`;
+
 const Cutout: React.FC<{ src: string; videoRef: React.RefObject<HTMLVideoElement | null> }> = ({ src, videoRef }) => {
   const [playing, setPlaying] = React.useState(false);
+  const [shape, setShape] = React.useState(16 / 10);
   const toggle = () => {
     const v = videoRef.current;
     if (!v) return;
@@ -182,12 +186,16 @@ const Cutout: React.FC<{ src: string; videoRef: React.RefObject<HTMLVideoElement
   const fade =
     'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 88%, transparent)';
   return (
-    <div className="relative max-w-[640px]">
+    <div className="relative mx-auto" style={{ width: fill(shape) }}>
       <video
         ref={videoRef}
         src={src}
         playsInline
         preload="auto"
+        onLoadedMetadata={(e) => {
+          const v = e.currentTarget;
+          if (v.videoWidth && v.videoHeight) setShape(v.videoWidth / v.videoHeight);
+        }}
         onClick={toggle}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
@@ -483,7 +491,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       {letter.video && (
         <aside className="lg:sticky lg:top-0 lg:flex-1 min-w-0 px-6 md:px-14 lg:pl-0 pt-10 md:pt-14">
           {yt ? (
-            <div className="w-full max-w-[640px] aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]">
+            <div className="mx-auto aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]" style={{ width: fill(16 / 9) }}>
               <div ref={youtubeRef} className="w-full h-full" />
             </div>
           ) : letter.cutout ? (
@@ -495,7 +503,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
               controls
               playsInline
               preload="metadata"
-              className="w-full max-w-[640px] rounded-[6px] bg-[#efe9dc]"
+              className="block mx-auto max-w-full max-h-[calc(100vh-8rem)] rounded-[6px] bg-[#efe9dc]"
             />
           )}
           {!done && (
