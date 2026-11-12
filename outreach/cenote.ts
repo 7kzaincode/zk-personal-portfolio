@@ -2,14 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Kofi and Kristy",
-  subject: "Can I please please (please) intern at Cenote?",
-  greeting: "hey Kofi and Kristy,",
+  subject: "Could I please please (please) come work with you at Cenote?",
+  greeting: "hey Kofi and Kristy, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I spent my summer building commerce features that shoppers in 80+ countries use, and before that building an agent that does things when you talk to it. Cenote looks like both at once.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I shipped features across seven production apps (Python/Django services over gRPC, Postgres, AWS) and led the rebuild of their surface designer from plan to production.",
-    "at NexHacks my team and I built [otto](https://github.com/7kzaincode/otto), a voice-first assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track.",
-    "where I think I'd help: the join between the conversation and the store: catalog data, checkout edge cases, and agents that don't promise things the backend can't do.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Cenote builds agents for conversational commerce. conveniently, I spent my summer on commerce software, and built a voice agent before that.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in commerce and agents, ideally at the same time.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
+    "I also built [otto](https://github.com/7kzaincode/otto) with my team at a hackathon: a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
+    "I also spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

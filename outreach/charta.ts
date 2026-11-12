@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Scott",
-  subject: "Can I please please (please) intern at Charta Health?",
-  greeting: "hey Scott,",
+  subject: "Could I please please (please) come work with you at Charta Health?",
+  greeting: "hey Scott, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I built an assistant that reads clinical notes and turns them into treatment plans with procedure codes and costs, which I gather is a toy version of chart review.",
-    "that's [toothfairy](https://github.com/7kzaincode/toothfairy). it reads X-rays and clinical notes, pulls out the findings, builds a treatment plan with procedure codes and costs, and keeps each patient's history across visits.",
-    "before that I was the only engineer at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders. every value in it traces back to its source.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I led the rebuild of their surface designer from plan to production. shoppers in 80+ countries use it to design custom tile and flooring patterns.",
-    "where I think I'd help: forward-deployed work: sitting with the messy charts and the customer until the model's output is something they'd sign.",
-    "would love to chat if you're open to it. I heard you ran a january to april co-op for waterloo students last winter, and I'd like to be this winter's.",
+    "word on the street is that Charta ran a january to april co-op for waterloo students last winter. conveniently, I built an assistant that reads clinical notes and turns them into procedure codes and costs.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in AI for medical charts.",
+    "I built [toothfairy](https://github.com/7kzaincode/toothfairy), an assistant that remembers your dental history better than you do. it reads X-rays and clinical notes and turns them into a treatment plan with procedure codes and costs.",
+    "I also spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

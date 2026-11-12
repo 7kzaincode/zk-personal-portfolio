@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Kacey",
-  subject: "Can I please please (please) intern at Hadrian?",
-  greeting: "hey Kacey,",
+  subject: "Could I please please (please) come work with you at Hadrian?",
+  greeting: "hey Kacey, I'm Zain.",
   paragraphs: [
-    "Hadrian writes the software that runs its factories. I spent almost three years writing the software that runs an appliance contractor, which is a much smaller and less impressive version of the same idea. (yes, this is a cold email with its own url. I got a little carried away.)",
-    "that was Kasperia, where I was the only engineer. the system I built takes projects from bid to supplier quotes, pricing, and orders, and every number in it traces back to where it came from.",
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), looking for a software internship from january to april. I saw the software intern posting in LA.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I led the rebuild of their surface designer from plan to production. shoppers in 80+ countries use it to design custom tile and flooring patterns.",
-    "I also wrote ROS 2 nodes on [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
-    "would you be open to a 15-minute chat? I'll try to make it worth all 15 (or at least the first 10), and I'd love to hear whether that role could work for a january start.",
+    "word on the street is that Hadrian writes the software that runs its factories. conveniently, I spent almost three years writing the software that runs an appliance contractor, so I figured we'd have something to talk about.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in software that runs physical operations.",
+    "I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "I also wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

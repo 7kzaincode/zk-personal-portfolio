@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Sutej",
-  subject: "Can I please please (please) intern at Lucid?",
-  greeting: "hey Sutej,",
+  subject: "Could I please please (please) come work with you at Lucid?",
+  greeting: "hey Sutej, I'm Zain.",
   paragraphs: [
-    "you're a waterloo engineer doing data engineering at Lucid, and I'm a waterloo engineer who'd like to be doing software at Lucid, so I figured that was enough in common to say hi. (yes, this is a cold email with its own url. I got a little carried away.)",
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), looking for a software internship from january to april.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I shipped features across seven production apps (Python/Django services over gRPC, Postgres, AWS) and led the rebuild of their surface designer from plan to production.",
-    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company. I built their project system so that every price, lead time, and payment traces back to where it came from.",
-    "I also wrote ROS 2 nodes for [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team, which is where the wanting-to-work-on-cars part comes from.",
-    "would you be up for a 15-minute chat about what the data side of an EV company looks like day to day? I'll try to make it worth all 15 (or at least the first 10). and if you know who handles co-ops for january, I'd happily go bother them instead.",
+    "word on the street is that you're a waterloo engineer doing data engineering at Lucid. I'm a waterloo engineer who'd like to be doing software at Lucid, so I figured that was enough in common to say hi.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in software for cars, and the data underneath it.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
+    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
+    "I also wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

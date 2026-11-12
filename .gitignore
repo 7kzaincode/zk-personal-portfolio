@@ -27,3 +27,8 @@ dist-ssr
 test-results/
 .repo-work/animation-assessment-2026-09-13/
 .repo-work/
+
+# local-only test page for the video layout
+outreach/zz-*.ts
+public/video/zz-*
+public/og/zz-*

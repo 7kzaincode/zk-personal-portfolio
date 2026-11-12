@@ -2,15 +2,14 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Philip and Daniel",
-  subject: "Can I please please (please) intern at CommodityAI?",
-  greeting: "hey Philip and Daniel,",
+  subject: "Could I please please (please) come work with you at CommodityAI?",
+  greeting: "hey Philip and Daniel, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I spent almost three years building the operating system for a business that buys and moves physical things. they were appliances, not commodities, but the paperwork rhymes.",
-    "that was at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders (and carried appliances up strangers' stairs on the days I wasn't coding).",
-    "it kept separate histories for quotes, payments, and deliveries so every price and lead time traced back to its source, and had agents draft supplier follow-ups and payment emails straight from live project state.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I led the rebuild of their surface designer from plan to production. shoppers in 80+ countries use it to design custom tile and flooring patterns.",
-    "where I think I'd help: the operational plumbing: quotes, orders, and deliveries that have to agree with each other.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that CommodityAI is the operating system for commodity operations. conveniently, I spent almost three years building one for a business that buys and moves appliances, and the paperwork rhymes.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in software for businesses that move physical things.",
+    "I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

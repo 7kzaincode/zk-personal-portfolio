@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Angelica and Luca",
-  subject: "Can I please please (please) intern at Nucleo?",
-  greeting: "hey Angelica and Luca,",
+  subject: "Could I please please (please) come work with you at Nucleo?",
+  greeting: "hey Angelica and Luca, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and lately I've been teaching a transformer which genes cancer cells can't live without, which felt worth mentioning to a company building an agentic platform for oncology.",
-    "that's ADEPT, an attention-based model I've been building at UBC that predicts cancer cell-line gene dependencies from expression data. it outperforms DeepDep, and I'm writing the paper now.",
-    "I also built [toothfairy](https://github.com/7kzaincode/toothfairy), which reads dental X-rays and clinical notes, builds a treatment plan with procedure codes and costs, and keeps each patient's history across visits.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I led the rebuild of their surface designer from plan to production. shoppers in 80+ countries use it to design custom tile and flooring patterns.",
-    "where I think I'd help: turning messy biological and clinical data into something a model or an agent can actually use.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Nucleo is building an agentic platform for oncology. conveniently, I've been teaching a transformer which genes cancer cells can't live without.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in AI for cancer research.",
+    "I've been building ADEPT at UBC, a model that predicts which genes cancer cells can't live without. it outperforms DeepDep, and I'm writing the paper now.",
+    "I also built [toothfairy](https://github.com/7kzaincode/toothfairy), an assistant that remembers your dental history better than you do. it reads X-rays and clinical notes and turns them into a treatment plan with procedure codes and costs.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

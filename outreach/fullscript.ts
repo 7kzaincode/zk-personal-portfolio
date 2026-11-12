@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Kylie",
-  subject: "Can I please please (please) intern at Fullscript?",
-  greeting: "hey Kylie,",
+  subject: "Could I please please (please) come work with you at Fullscript?",
+  greeting: "hey Kylie, I'm Zain.",
   paragraphs: [
-    "Fullscript has a standing co-op posting, which I'm choosing to read as a standing invitation. (yes, this is a cold email with its own url. I got a little carried away.)",
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), looking for a software internship from january to april.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I shipped commerce features across seven production apps and led the rebuild of their surface designer, which shoppers in 80+ countries use.",
-    "I also built [toothfairy](https://github.com/7kzaincode/toothfairy), which reads dental X-rays and clinical notes, builds a treatment plan with procedure codes and costs, and keeps each patient's history across visits.",
-    "before that I was the only engineer at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders.",
-    "would you be open to a 15-minute chat? I'll try to make it worth all 15 (or at least the first 10), and I'd love to hear which teams are taking co-ops for january.",
+    "word on the street is that Fullscript has a standing co-op posting. I'm choosing to read that as a standing invitation.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in health e-commerce.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
+    "I also built [toothfairy](https://github.com/7kzaincode/toothfairy), an assistant that remembers your dental history better than you do. it reads X-rays and clinical notes and turns them into a treatment plan with procedure codes and costs.",
+    "I also spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

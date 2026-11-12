@@ -2,14 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Rachit and Will",
-  subject: "Can I please please (please) intern at Centralize?",
-  greeting: "hey Rachit and Will,",
+  subject: "Could I please please (please) come work with you at Centralize?",
+  greeting: "hey Rachit and Will, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I've built an agent that lives in your Gmail and calendar, and a system that keeps the full history of every supplier relationship at a contractor. put together, that's a very small Centralize.",
-    "at NexHacks my team and I built [otto](https://github.com/7kzaincode/otto), a voice-first assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track.",
-    "before that I was the only engineer at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders. it kept separate histories for quotes, payments, and deliveries so every price and lead time traced back to its source, and had agents draft supplier follow-ups and payment emails straight from live project state.",
-    "where I think I'd help: pulling relationship data out of the places it actually lives, and keeping track of where each fact came from.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Centralize does relationship intelligence for enterprise revenue teams. conveniently, I've built an agent that lives in your Gmail and calendar, and a system that tracks every supplier relationship at a contractor.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in getting relationship data out of the places it actually lives.",
+    "at a hackathon my team and I built [otto](https://github.com/7kzaincode/otto), a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
+    "I also spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

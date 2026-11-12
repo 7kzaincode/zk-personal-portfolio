@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Christine",
-  subject: "Can I please please (please) intern at Nuro?",
-  greeting: "hey Christine,",
+  subject: "Could I please please (please) come work with you at Nuro?",
+  greeting: "hey Christine, I'm Zain.",
   paragraphs: [
-    "I saw Nuro's AI platform intern posting and figured a technical recruiter would know better than a careers page whether a january co-op from waterloo is a realistic ask. (this is a cold email, it just happens to live on my website.)",
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), looking for a software internship from january to april.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I shipped features across seven production apps (Python/Django services over gRPC, Postgres, AWS) and led the rebuild of their surface designer from plan to production.",
-    "the closest I've gotten to an actual vehicle so far: I wrote ROS 2 nodes across perception, planning, and control on [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
-    "I also moved my team at Leap onto agent harnesses with pre-commit gates, which I'd like to think sped everyone up (maybe I'm giving myself too much credit).",
-    "would you be open to a 15-minute chat? I'll try to make it worth all 15 (or at least the first 10), and I'd love to hear whether that role, or any other, fits a january to april term.",
+    "word on the street is that Nuro is hiring an AI platform intern. I figured a technical recruiter would know better than a careers page whether a january co-op from waterloo is realistic.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in autonomy and the platforms behind it.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
+    "I also moved the team onto some internal tooling that I'd like to think sped everyone up (maybe I'm giving myself too much credit, but nobody's switched back).",
+    "I also wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

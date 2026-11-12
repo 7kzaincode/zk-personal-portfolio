@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Adhit and William",
-  subject: "Can I please please (please) intern at Janet AI?",
-  greeting: "hey Adhit and William,",
+  subject: "Could I please please (please) come work with you at Janet AI?",
+  greeting: "hey Adhit and William, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I spent almost three years building agents that knew exactly one company very well. it was an appliance contractor, so the bar for 'learns your company' was mostly appliances and invoices.",
-    "that was Kasperia. I built KPM, an agentic system that runs their projects from bid to supplier quotes, pricing, and orders.",
-    "it kept separate histories for quotes, payments, and deliveries so every price and lead time traced back to its source, and had agents draft supplier follow-ups and payment emails straight from live project state.",
-    "at NexHacks my team and I built [otto](https://github.com/7kzaincode/otto), a voice-first assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track.",
-    "where I think I'd help: getting company context into agents in a way that survives contact with real, messy operations.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Janet AI builds agents that learn your company and work 24/7. conveniently, I spent almost three years building software that knew exactly one company very well.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in agents that understand the business they work in.",
+    "I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
+    "I also built [otto](https://github.com/7kzaincode/otto) with my team at a hackathon: a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

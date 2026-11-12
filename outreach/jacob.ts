@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Jacob",
-  subject: "Can I please please (please) intern at Waabi?",
-  greeting: "hey Jacob,",
+  subject: "Could I please please (please) come work with you at Waabi?",
+  greeting: "hey Jacob, I'm Zain.",
   paragraphs: [
-    "waterloo CS to self-driving research in toronto is roughly the trip I'd like to take, minus the part where I'm in computer engineering and currently know much less than you. (yes, this is a cold email with its own url. I got a little carried away.)",
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), looking for a co-op from january to april. Waabi's 2027 co-op postings are how I found you.",
-    "on [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team, I wrote C++ ROS 2 nodes across perception, planning, and control (costmaps, A*, pure pursuit), enough to get a robot across a room without hitting anyone.",
-    "on the research side, I've been building ADEPT at UBC, an attention-based model that predicts which genes cancer cell lines depend on from expression data. it outperforms DeepDep, and I'm writing the paper now.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I led the rebuild of their surface designer from plan to production. shoppers in 80+ countries use it to design custom tile and flooring patterns.",
-    "would you be up for a 15-minute chat about what research at Waabi looks like from the inside? I'll try to make it worth all 15 (or at least the first 10). and if you know who to ask about the co-ops, that'd be a bonus.",
+    "word on the street is that you went from waterloo CS to self-driving research at Waabi. that's roughly the trip I'd like to take, so I figured I'd ask how it's done.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in self-driving, on both the research and the software side.",
+    "I wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
+    "on the research side, I've been building ADEPT at UBC, a model that predicts which genes cancer cells can't live without. it outperforms DeepDep, and I'm writing the paper now.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

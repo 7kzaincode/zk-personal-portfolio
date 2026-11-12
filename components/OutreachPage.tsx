@@ -11,13 +11,23 @@ export interface OutreachLetter {
   subject: string;
   /** "hey Giliat," */
   greeting: string;
-  /** Typed out in order as the reader scrolls. */
+  /** Typed out in order: as the reader scrolls, or in time with the video. */
   paragraphs: string[];
-  /** Defaults to ['Thanks', 'Zain']. */
+  /** Defaults to ['Thank you.', 'Zain']. */
   signoff?: string[];
+  /** A recording of Zain saying the letter, e.g. '/video/giliat.mp4'. When
+      set, the video sits on the right and the text is typed as he speaks;
+      scrolling no longer drives anything. */
+  video?: string;
+  /** Optional: the second at which each line (greeting first, then each
+      paragraph, then the sign-off lines) starts being spoken. Without it the
+      text is spread evenly over the video's length. */
+  cues?: number[];
   /** Optional line after the sign-off. */
   ps?: string;
 }
+
+const CALENDLY = 'https://calendly.com/zain-zainkhan';
 
 const LINK = 'text-[#B4532A] hover:underline underline-offset-2 decoration-1';
 const url = (label: string) => SOCIAL_LINKS.find((s) => s.label === label)?.url ?? '#';
@@ -31,7 +41,7 @@ const reducedMotion = () =>
    the page runs out: there is nothing to scroll past the end of the letter. */
 const WRITE_LINE = 0.55;
 
-type Seg = { text: string; href?: string };
+type Seg = { text: string; href?: string; note?: string };
 const parse = (s: string): Seg[] =>
   s
     .split(/(\[[^\]]+\]\([^)]+\))/g)
@@ -69,6 +79,16 @@ const Typed: React.FC<{ segs: Seg[]; count: number; caret: boolean }> = ({ segs,
             {cut[i] < seg.text.length && <span className="invisible">{seg.text.slice(cut[i])}</span>}
           </>
         );
+        if (seg.note) {
+          /* The name, on a page with a video: he has said it out loud, so it
+             carries a small apology in case he said it wrong. */
+          return (
+            <span key={i} className={cut[i] === seg.text.length ? 'name-note' : ''} tabIndex={cut[i] === seg.text.length ? 0 : -1}>
+              {inner}
+              {cut[i] === seg.text.length && <span className="name-tip" role="tooltip">{seg.note}</span>}
+            </span>
+          );
+        }
         return seg.href ? (
           <a
             key={i}
@@ -116,7 +136,7 @@ export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = 
 );
 
 const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
-  const signoff = letter.signoff ?? ['Thanks', 'Zain'];
+  const signoff = letter.signoff ?? ['Thank you.', 'Zain'];
 
   /* Every typed line, in reading order. */
   const lines = React.useMemo(() => {
@@ -127,8 +147,19 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       ...(letter.ps ? [{ kind: 'ps', text: letter.ps }] : []),
     ];
     let start = 0;
-    return all.map((l) => {
-      const segs = parse(l.text);
+    return all.map((l, i) => {
+      let segs = parse(l.text);
+      const at = l.text.indexOf(letter.to);
+      if (i === 0 && letter.video && at >= 0) {
+        segs = [
+          { text: l.text.slice(0, at) },
+          {
+            text: letter.to,
+            note: letter.to.includes(' and ') ? 'sorry if I said your names wrong' : 'sorry if I said your name wrong',
+          },
+          { text: l.text.slice(at + letter.to.length) },
+        ].filter((seg) => seg.text);
+      }
       const len = length(segs);
       const line = { ...l, segs, len, start };
       start += len;
@@ -140,6 +171,8 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
   const [typed, setTyped] = React.useState(() => (reducedMotion() ? total : 0));
   const refs = React.useRef<(HTMLElement | null)[]>([]);
   const target = React.useRef(0);
+  const endRef = React.useRef<HTMLDivElement>(null);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
   const done = typed >= total;
 
   React.useEffect(() => {
@@ -162,8 +195,35 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
     let last = 0;
     let carry = 0;
 
+    /* With a video, the text keeps time with the speaker instead: each line
+       is typed across the seconds it is spoken in. */
+    const fromVideo = () => {
+      const v = videoRef.current;
+      if (!v || !v.duration) return;
+      if (v.ended) return void (target.current = total);
+      const t = v.currentTime;
+      const cues = letter.cues;
+      let n = 0;
+      if (cues?.length) {
+        lines.forEach((line, i) => {
+          const from = cues[i] ?? v.duration;
+          const to = cues[i + 1] ?? v.duration;
+          n += Math.round(line.len * Math.max(0, Math.min(1, (t - from) / Math.max(0.2, to - from))));
+        });
+      } else {
+        n = Math.round(total * Math.min(1, t / (v.duration * 0.97)));
+      }
+      target.current = Math.max(target.current, n);
+    };
+
     const measure = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (letter.video) return fromVideo();
+      // typing ends when the end of the letter reaches the bottom of the
+      // screen; what sits below it (the calendar) is just more page
+      const end = endRef.current;
+      const max = end
+        ? end.getBoundingClientRect().bottom + window.scrollY + 56 - window.innerHeight
+        : document.documentElement.scrollHeight - window.innerHeight;
       // a letter that fits on one screen has nothing to scroll: write it all
       const progress = max > 4 ? Math.min(1, window.scrollY / max) : 1;
       const y = window.innerHeight * (WRITE_LINE + (1 - WRITE_LINE) * progress);
@@ -183,6 +243,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
     const tick = (now: number) => {
       const dt = Math.min(64, now - (last || now));
       last = now;
+      if (letter.video) fromVideo();
       setTyped((t) => {
         const gap = target.current - t;
         if (gap <= 0) return t;
@@ -204,7 +265,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       window.removeEventListener('scroll', measure);
       window.removeEventListener('resize', measure);
     };
-  }, [lines, total]);
+  }, [lines, total, letter.video, letter.cues]);
 
   const caretLine = lines.reduce((at, l, i) => (typed > l.start ? i : at), 0);
   const mailto = `${url('mail')}?subject=${encodeURIComponent(`re: ${letter.subject}`)}`;
@@ -220,9 +281,22 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       <style>{`
         @keyframes caret-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
         .caret { animation: caret-blink 1s steps(1) infinite; }
+        .name-note { position: relative; cursor: help; border-bottom: 1px dotted #B4532A; outline: none; }
+        .name-tip {
+          position: absolute; left: 0; top: calc(100% + 6px); z-index: 5; white-space: nowrap;
+          padding: 5px 9px; border-radius: 4px; background: #1b1b1b; color: #FBF8F1;
+          font: 12px Inter, system-ui, sans-serif; opacity: 0; pointer-events: none;
+          transform: translateY(-3px); transition: opacity .18s, transform .18s;
+        }
+        .name-note:hover .name-tip, .name-note:focus .name-tip { opacity: 1; transform: none; }
       `}</style>
 
-      <main className="max-w-[660px] px-6 md:px-14 pt-10 md:pt-14 font-serif text-[18px] md:text-[19px] leading-[1.6]">
+      <div className={letter.video ? 'flex flex-col-reverse lg:flex-row lg:items-start' : ''}>
+      <main
+        className={`w-full max-w-[660px] px-6 md:px-14 pt-10 md:pt-14 font-serif text-[18px] md:text-[19px] leading-[1.6] ${
+          letter.video ? 'lg:w-[54%] lg:shrink-0' : ''
+        }`}
+      >
         <div className="reveal font-sans text-[12px] leading-[1.9] pb-4 mb-6 border-b border-[#e9e3d6]">
           {[
             ['from', 'Zain Khan'],
@@ -253,6 +327,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
         ))}
 
         <div
+          ref={endRef}
           className="mt-7 pt-4 border-t border-[#e9e3d6] flex flex-wrap gap-x-5 gap-y-1 font-sans text-[13px] transition-opacity duration-700"
           style={{ opacity: done ? 1 : 0, pointerEvents: done ? 'auto' : 'none' }}
           inert={!done}
@@ -263,14 +338,58 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
           <a className={LINK} href="/">The rest of my site</a>
         </div>
 
+        {/* Booking a time should take no more than scrolling a little further. */}
+        <div
+          className="mt-10 transition-opacity duration-700"
+          style={{ opacity: done ? 1 : 0, pointerEvents: done ? 'auto' : 'none' }}
+          inert={!done}
+        >
+          <p className="font-sans text-[12px] text-[#a8a199] mb-3">book a time</p>
+          {done && (
+            <iframe
+              title="Book a time with Zain"
+              src={`${CALENDLY}?hide_gdpr_banner=1&background_color=fbf8f1&text_color=57534c&primary_color=b4532a`}
+              className="w-full h-[720px] border border-[#e9e3d6] rounded-[6px] bg-[#FBF8F1]"
+              loading="lazy"
+            />
+          )}
+          <a className={`${LINK} font-sans text-[13px] inline-block mt-3`} href={CALENDLY} target="_blank" rel="noreferrer">
+            or open the calendar in a new tab
+          </a>
+        </div>
+
         <div className="h-14 md:h-16" aria-hidden="true" />
       </main>
+
+      {letter.video && (
+        <aside className="lg:sticky lg:top-0 lg:flex-1 min-w-0 px-6 md:px-14 lg:pl-0 pt-10 md:pt-14">
+          <video
+            ref={videoRef}
+            src={letter.video}
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full max-w-[640px] rounded-[6px] bg-[#efe9dc]"
+          />
+          {!done && (
+            <button
+              type="button"
+              onClick={() => (target.current = total)}
+              className="mt-2 font-sans text-[11px] text-[#a8a199] hover:text-[#B4532A]"
+            >
+              or just read it
+            </button>
+          )}
+        </aside>
+      )}
+      </div>
 
       <button
         type="button"
         onClick={() => window.scrollBy({ top: window.innerHeight * 0.4, behavior: 'smooth' })}
-        aria-hidden={done}
+        aria-hidden={done || !!letter.video}
         tabIndex={done ? -1 : 0}
+        hidden={!!letter.video}
         className="fixed bottom-4 left-1/2 -translate-x-1/2 px-3 py-2 font-sans text-[11px] text-[#a8a199] hover:text-[#B4532A] transition-opacity duration-500"
         style={{ opacity: done ? 0 : 1, pointerEvents: done ? 'none' : 'auto' }}
       >

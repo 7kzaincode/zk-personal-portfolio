@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Eric and Jae",
-  subject: "Can I please please (please) intern at Sponge?",
-  greeting: "hey Eric and Jae,",
+  subject: "Could I please please (please) come work with you at Sponge?",
+  greeting: "hey Eric and Jae, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I built agents that drafted an appliance contractor's payment emails, which is about as close to the agent economy as a contractor gets. financial infrastructure for the real thing sounds more useful.",
-    "before that I was the only engineer at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders. every payment in it traced back to its source.",
-    "at NexHacks my team and I built [otto](https://github.com/7kzaincode/otto), a voice-first assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track. along the way I cut tokens per request from 4000 to 1800.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I shipped features across seven production apps (Python/Django services over gRPC, Postgres, AWS) and led the rebuild of their surface designer from plan to production.",
-    "where I think I'd help: the integration layer, where an agent spending money has to be boring and correct.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Sponge is building financial infrastructure for the agent economy. conveniently, I built software that drafted an appliance contractor's payment emails, which is about as close to the agent economy as a contractor gets.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in agents that handle money.",
+    "I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
+    "I also built [otto](https://github.com/7kzaincode/otto) with my team at a hackathon: a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

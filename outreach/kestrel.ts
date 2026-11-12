@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Raman",
-  subject: "Can I please please (please) intern at Kestrel?",
-  greeting: "hey Raman,",
+  subject: "Could I please please (please) come work with you at Kestrel?",
+  greeting: "hey Raman, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and my summer was Django services over gRPC, AWS, a Postgres migration, and getting coding agents to stop committing things that failed checks. so agents for platform engineering sounds like help I would've taken.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I shipped features across seven production apps (Python/Django services over gRPC, Postgres, AWS) and led the rebuild of their surface designer from plan to production.",
-    "I also moved my team onto agent harnesses with pre-commit gates, so nothing an agent wrote got committed without passing the checks.",
-    "before that I was the only engineer at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders.",
-    "where I think I'd help: writing the agent, then being the grumpy engineer it has to satisfy.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Kestrel builds AI agents for platform engineering. my summer was Django services, AWS, and a Postgres migration, so that sounds like help I would've taken.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in platform engineering.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
+    "I also moved the team onto AI coding agents with pre-commit gates, so nothing an agent wrote got committed without passing the checks.",
+    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

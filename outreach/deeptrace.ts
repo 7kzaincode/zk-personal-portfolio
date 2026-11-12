@@ -2,15 +2,15 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Andy",
-  subject: "Can I please please (please) intern at Deeptrace?",
-  greeting: "hey Andy,",
+  subject: "Could I please please (please) come work with you at Deeptrace?",
+  greeting: "hey Andy, I'm Zain.",
   paragraphs: [
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), and the last time something of mine broke at the worst possible moment, it was mid-pitch at a hackathon, so I have a personal interest in AI agents for on-call.",
-    "at NexHacks my team and I built [otto](https://github.com/7kzaincode/otto), a voice-first assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track. the AI was the easy part. our demo nearly died because Google tokens expire every hour, which is a fun thing to discover mid-pitch.",
-    "this summer at [Leap Tools](https://www.leaptools.com/) I moved my team onto agent harnesses with pre-commit gates, so nothing an agent wrote got committed without passing the checks.",
-    "before that I was the only engineer at Kasperia, an appliance contracting company, where I built KPM, an agentic system that runs projects from bid to supplier quotes, pricing, and orders.",
-    "where I think I'd help: building and breaking the agent against real incidents, and the tooling that tells you why it did what it did.",
-    "would love to chat if you're open to it (also looking for an intern position for w27, january to april, if that's on the table).",
+    "word on the street is that Deeptrace builds AI agents for on-call. the last time something of mine broke at the worst possible moment was mid-pitch at a hackathon, so I'm a believer.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in agents that fix things at 3am so people don't have to.",
+    "at a hackathon my team and I built [otto](https://github.com/7kzaincode/otto), a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "I also moved the team onto AI coding agents with pre-commit gates, so nothing an agent wrote got committed without passing the checks.",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

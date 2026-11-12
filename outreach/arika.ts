@@ -2,15 +2,16 @@ import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
   to: "Arika",
-  subject: "Can I please please (please) intern at Lucid?",
-  greeting: "hey Arika,",
+  subject: "Could I please please (please) come work with you at Lucid?",
+  greeting: "hey Arika, I'm Zain.",
   paragraphs: [
-    "you run university and early-career recruiting at Lucid, and I'm about as early-career as it gets, so I think I'm in the right place. (this is a cold email, it just happens to live on my website.)",
-    "I'm Zain, a computer engineering student @ [waterloo](https://uwaterloo.ca/), looking for a software internship from january to april. software for cars is at the top of my list.",
-    "my last co-op was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their in-browser surface designer end to end. it's in production today, and shoppers in 80+ countries use it to design tile and flooring patterns.",
-    "the closest I've gotten to an actual vehicle so far: I wrote ROS 2 nodes across perception, planning, and control on [WATonomous](https://www.watonomous.ca/), waterloo's autonomous vehicle team.",
-    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company, where I built the system that runs their projects from bid to supplier quotes, pricing, and orders.",
-    "would you be open to a 15-minute chat? I'll try to make it worth all 15 (or at least the first 10), and I'd love to hear how Lucid's january intern cycle works and whether any software teams still have room.",
+    "word on the street is that you run university and early-career recruiting at Lucid. conveniently, I'm about as early-career as it gets, so I think I'm in the right place.",
+    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in vehicle software.",
+    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
+    "I also moved the team onto some internal tooling that I'd like to think sped everyone up (maybe I'm giving myself too much credit, but nobody's switched back).",
+    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
+    "and the closest I've gotten to an actual vehicle so far: I wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/).",
+    "if you're interested, please book a time with me below!",
   ],
 };
 

@@ -14,7 +14,7 @@ const chrome =
   process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const out = path.resolve(`public/og/${slug}.png`);
 const profile = mkdtempSync(path.join(tmpdir(), 'og-card-'));
-try {
+const shoot = () =>
   execFileSync(
     chrome,
     [
@@ -27,8 +27,15 @@ try {
       `--screenshot=${out}`,
       `http://localhost:${process.env.PORT ?? 3000}/${slug}?card`,
     ],
-    { stdio: 'ignore' }
+    // headless Chrome occasionally hangs; give up and try again rather than wait
+    { stdio: 'ignore', timeout: 45000, killSignal: 'SIGKILL' }
   );
+try {
+  try {
+    shoot();
+  } catch {
+    shoot();
+  }
 } finally {
   rmSync(profile, { recursive: true, force: true });
 }
