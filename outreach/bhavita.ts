@@ -5,8 +5,8 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Tesla?",
   greeting: "hey Bhavita, I'm Zain.",
   paragraphs: [
-    "word on the street is that you led the thermal program for Cybertruck and now work on charging engineering. charging is the part of Tesla every driver touches, so I figured I'd ask someone who works on it.",
-    "if you're seeing this, you've seen my email. like I said there, I'm a computer engineering student at [Waterloo](https://uwaterloo.ca/), and I'm interested in charging software.",
+    "I was looking for UBC engineers at Tesla and found you. I saw you ran the thermal program for Cybertruck, and now you're in charging, which every Tesla driver ends up using.",
+    "if you're seeing this, you've seen my email. like I said there, I'm a computer engineering student at [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
     "a little bit about me: this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries.",
     "I also moved the team onto some internal tooling that I'd like to think sped everyone up. maybe I'm giving myself too much credit, but nobody's switched back.",
     "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company. some days I was also the guy carrying the appliances up the stairs. I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
