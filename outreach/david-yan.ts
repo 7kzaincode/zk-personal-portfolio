@@ -5,7 +5,7 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Tesla?",
   greeting: "hey David, I'm Zain.",
   paragraphs: [
-    "I heard you run the tooling team for Autopilot. I just so happen to love building tools for other engineers, so I figured I'd reach out and say hi.",
+    "I heard you run the team that builds the software Autopilot engineers use to do their jobs. I spent part of my summer doing a small version of that for my own team, so I figured I'd reach out and say hi.",
     "like I said in my email, I'm a computer engineering student at [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
     "a little bit about me: this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries.",
     "I also moved the team onto some internal tooling that I'd like to think sped everyone up. maybe I'm giving myself too much credit, but nobody's switched back.",
