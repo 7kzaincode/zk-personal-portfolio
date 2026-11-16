@@ -186,6 +186,11 @@ const Cutout: React.FC<{
 }> = ({ src, videoRef, poster, crop }) => {
   const [playing, setPlaying] = React.useState(false);
   const [shape, setShape] = React.useState(16 / 10);
+  const [speed, setSpeed] = React.useState(1);
+  const changeSpeed = (n: number) => {
+    setSpeed(n);
+    if (videoRef.current) videoRef.current.playbackRate = n;
+  };
   const toggle = () => {
     const v = videoRef.current;
     if (!v) return;
@@ -197,6 +202,7 @@ const Cutout: React.FC<{
     'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 66%, rgba(0,0,0,0.94) 72%, rgba(0,0,0,0.8) 78%, rgba(0,0,0,0.6) 84%, rgba(0,0,0,0.38) 89%, rgba(0,0,0,0.18) 94%, rgba(0,0,0,0.05) 98%, transparent)';
   return (
     <div className="player relative mx-auto" style={{ '--shape': (shape * cw) / ch } as React.CSSProperties}>
+      <div className="relative">
       <div
         className="relative overflow-hidden"
         style={{ aspectRatio: String(shape * cw / ch), WebkitMaskImage: fade, maskImage: fade, WebkitMaskComposite: 'source-in', maskComposite: 'intersect' }}
@@ -210,6 +216,7 @@ const Cutout: React.FC<{
         onLoadedMetadata={(e) => {
           const v = e.currentTarget;
           if (v.videoWidth && v.videoHeight) setShape(v.videoWidth / v.videoHeight);
+          v.playbackRate = speed;
         }}
         onClick={toggle}
         onPlay={() => setPlaying(true)}
@@ -227,6 +234,21 @@ const Cutout: React.FC<{
       >
         ▶ play
       </button>
+      </div>
+      <label className="mt-3 flex items-center justify-center gap-2 font-sans text-[11px] text-[#a8a199]">
+        speed
+        <input
+          type="range"
+          min={0.75}
+          max={2}
+          step={0.25}
+          value={speed}
+          onChange={(e) => changeSpeed(Number(e.target.value))}
+          aria-label="Playback speed"
+          className="w-28 cursor-pointer accent-[#B4532A]"
+        />
+        <span className="w-9 text-left tabular-nums text-[#1b1b1b]">{speed}×</span>
+      </label>
     </div>
   );
 };
