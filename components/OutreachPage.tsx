@@ -178,9 +178,6 @@ export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = 
 /* A recording whose background is already the page colour. With no frame, no
    controls bar and its edges faded out, the rectangle disappears and he is
    simply there on the page. Click him to play or pause. */
-/* As wide as the right-hand side allows, but never taller than the screen. */
-const fill = (shape: number) => `min(100%, calc((100vh - 8rem) * ${shape}))`;
-
 const Cutout: React.FC<{
   src: string;
   videoRef: React.RefObject<HTMLVideoElement | null>;
@@ -199,7 +196,7 @@ const Cutout: React.FC<{
   const fade =
     'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 88%, transparent)';
   return (
-    <div className="relative mx-auto" style={{ width: fill(shape * cw / ch) }}>
+    <div className="player relative mx-auto" style={{ '--shape': (shape * cw) / ch } as React.CSSProperties}>
       <div
         className="relative overflow-hidden"
         style={{ aspectRatio: String(shape * cw / ch), WebkitMaskImage: fade, maskImage: fade, WebkitMaskComposite: 'source-in', maskComposite: 'intersect' }}
@@ -427,6 +424,11 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       <style>{`
         @keyframes caret-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0; } }
         .caret { animation: caret-blink 1s steps(1) infinite; }
+        /* The player: full width when it sits above the letter on a narrow
+           screen; beside the letter it takes about half the window and about
+           60% of its height, so he is a comfortable size, not a billboard. */
+        .player { width: min(100%, calc(62vh * var(--shape, 1.5))); }
+        @media (min-width: 1024px) { .player { width: min(100%, 52vw, calc(62vh * var(--shape, 1.5))); } }
         .name-note { position: relative; cursor: help; border-bottom: 1px dotted #B4532A; outline: none; }
         .name-tip {
           position: absolute; left: 0; top: calc(100% + 6px); z-index: 5; white-space: nowrap;
@@ -510,7 +512,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
       {letter.video && (
         <aside className="lg:sticky lg:top-0 lg:h-screen lg:flex lg:flex-col lg:justify-center lg:flex-1 min-w-0 px-6 md:px-14 lg:pl-0 pt-10 md:pt-14 lg:pt-0">
           {yt ? (
-            <div className="mx-auto aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]" style={{ width: fill(16 / 9) }}>
+            <div className="player mx-auto aspect-video rounded-[6px] overflow-hidden bg-[#efe9dc]" style={{ '--shape': 16 / 9 } as React.CSSProperties}>
               <div ref={youtubeRef} className="w-full h-full" />
             </div>
           ) : letter.cutout ? (
