@@ -1,5 +1,5 @@
 // Turns a raw recording into the video for someone's page:
-//   npm run video -- <slug> <path to recording> [seconds to keep]
+//   npm run video -- <slug> <path to recording> [seconds to keep] [seconds to skip at the start]
 // It cuts Zain out of his background (Apple's Vision framework, on this Mac),
 // puts him on the site's page colour, compresses the result to
 // public/video/<slug>.mp4 and switches that person's letter to use it.
@@ -9,7 +9,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
-const [slug, input, keep] = process.argv.slice(2);
+const [slug, input, keep, skip] = process.argv.slice(2);
 if (!slug || !input) throw new Error('usage: npm run video -- <slug> <path to recording> [seconds to keep]');
 const letter = `outreach/${slug}.ts`;
 if (!existsSync(letter)) throw new Error(`no ${letter}`);
@@ -41,16 +41,17 @@ const [w, h] = [even(srcW), even(srcH)];
 mkdirSync('public/video', { recursive: true });
 const out = `public/video/${slug}.mp4`;
 const q = (s) => `'${String(s).replace(/'/g, `'\\''`)}'`;
-const limit = keep ? `-t ${Number(keep)}` : '';
+const limit = keep && Number(keep) > 0 ? `-t ${Number(keep)}` : '';
+const from = skip ? `-ss ${Number(skip)}` : '';
 console.log(`cutting you out of the background at ${w}x${h} (a few minutes per minute of video)...`);
 execFileSync(
   'sh',
   [
     '-c',
     `set -o pipefail; ` +
-      `ffmpeg -loglevel error -i ${q(input)} ${limit} -vf fps=${FPS},scale=${w}:${h} -f rawvideo -pix_fmt rgba - | ` +
+      `ffmpeg -loglevel error ${from} -i ${q(input)} ${limit} -vf fps=${FPS},scale=${w}:${h} -f rawvideo -pix_fmt rgba - | ` +
       `${q(bin)} ${w} ${h} | ` +
-      `ffmpeg -loglevel error -y -f rawvideo -pix_fmt rgba -s ${w}x${h} -framerate ${FPS} -i - ${limit} -i ${q(input)} ` +
+      `ffmpeg -loglevel error -y -f rawvideo -pix_fmt rgba -s ${w}x${h} -framerate ${FPS} -i - ${from} ${limit} -i ${q(input)} ` +
       `-map 0:v:0 -map '1:a:0?' ` +
       `-vf scale=in_range=full:out_range=tv:out_color_matrix=bt709,format=yuv420p ` +
       `-colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv ` +
