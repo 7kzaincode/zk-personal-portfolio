@@ -194,7 +194,7 @@ const Cutout: React.FC<{
   };
   const [cx, cy, cw, ch] = crop ?? [0, 0, 1, 1];
   const fade =
-    'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 88%, transparent)';
+    'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 66%, rgba(0,0,0,0.94) 72%, rgba(0,0,0,0.8) 78%, rgba(0,0,0,0.6) 84%, rgba(0,0,0,0.38) 89%, rgba(0,0,0,0.18) 94%, rgba(0,0,0,0.05) 98%, transparent)';
   return (
     <div className="player relative mx-auto" style={{ '--shape': (shape * cw) / ch } as React.CSSProperties}>
       <div
