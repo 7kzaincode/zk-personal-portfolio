@@ -11,7 +11,7 @@ const letter: OutreachLetter = {
     "while I was there, I also got the team onto some internal tooling. I'd like to think it sped everyone up, although I might be giving myself too much credit. but hey, nobody's gone back to the old way yet.",
     "and before that, I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days working on internal tooling, and others I was just the guy carrying appliances up the stairs, I kind of just did it all. on top of that, I built them a system that takes a project from bid to supplier quotes, all the way to pricing and orders, and its whole gist is basically just automating the manual, boring, error-prone work in between.",
     "oh, and the closest I've gotten to an actual car so far: I wrote ROS 2 nodes for perception, planning, and control on the autonomous car at [WATonomous](https://www.watonomous.ca/), which is Waterloo's self-driving team.",
-    "anyways, I'd really like to work on FSD and Robotaxi software. if you know of any intern spots there this winter, or who I should talk to, I'd really appreciate a quick chat. you can book a time with me right below this.",
+    "anyways, I'd really like to work on FSD and Robotaxi software. if you know of any intern spots there this winter, or who I should talk to, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
   ],
 };
 

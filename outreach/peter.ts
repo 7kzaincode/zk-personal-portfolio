@@ -10,7 +10,7 @@ const letter: OutreachLetter = {
     "to give you an idea of what I do: I spent this summer at [Leap Tools](https://www.leaptools.com/), where I rebuilt their surface designer from start to finish. that's basically the tool shoppers use to design their own tile patterns, and it's being used in over 80 countries.",
     "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm giving myself too much credit. but hey, nobody's switched back yet.",
     "before Leap, I spent almost three years at Kasperia, which is an appliance contracting company, and I was the only engineer there. so some days I was building internal tools, and other days I was just the guy carrying appliances up the stairs. I kind of did it all. the main thing I built was a system that takes a project from the bid, to supplier quotes, all the way to pricing and orders. basically, it automates all the manual, boring, error-prone work in between.",
-    "anyways, I'd love to hear what your team works on. and if you've got any spots for interns this winter, I'd really appreciate a quick chat. you can book a time with me right below this.",
+    "anyways, I'd love to hear what your team works on. and if you've got any spots for interns this winter, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
   ],
 };
 

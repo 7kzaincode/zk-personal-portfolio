@@ -11,7 +11,7 @@ const letter: OutreachLetter = {
     "I also set up some internal tooling for the team, which I'd like to think made everyone faster. maybe that's me giving myself too much credit, but nobody's switched back, so I'll take it.",
     "and before that, I was the only engineer at Kasperia for almost three years. they're an appliance contracting company, so some days I was working on internal tooling, and other days I was literally carrying appliances up the stairs. I kind of just did it all. but the big thing was a system I built that takes a project from bid to supplier quotes, all the way to pricing and orders. its whole gist is basically just automating the manual, boring, error-prone work in between.",
     "and the closest I've actually gotten to a vehicle so far is that I wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/).",
-    "anyways, the reason I'm reaching out to you specifically is that I'd love to work on your team, on the software side of supplier work. if you've got any intern spots this winter, I'd really appreciate a chat. you can grab a time right below this.",
+    "anyways, the reason I'm reaching out to you specifically is that I'd love to work on your team, on the software side of supplier work. if you've got any intern spots this winter, I'd really appreciate a chat. you can grab a time right below this, if you'd like.",
   ],
 };
 
