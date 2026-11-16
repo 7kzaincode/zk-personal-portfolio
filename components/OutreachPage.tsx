@@ -234,9 +234,7 @@ const Cutout: React.FC<{
       >
         ▶ play
       </button>
-      </div>
-      <label className="mt-3 flex items-center justify-center gap-2 font-sans text-[11px] text-[#a8a199]">
-        speed
+      <label className="speed group absolute right-1 bottom-2 flex items-center gap-1.5 px-2 py-1 rounded-full font-sans text-[10px] text-[#a8a199] hover:text-[#1b1b1b] focus-within:text-[#1b1b1b] cursor-pointer transition-colors duration-300">
         <input
           type="range"
           min={0.75}
@@ -245,10 +243,11 @@ const Cutout: React.FC<{
           value={speed}
           onChange={(e) => changeSpeed(Number(e.target.value))}
           aria-label="Playback speed"
-          className="w-28 cursor-pointer accent-[#B4532A]"
+          className="h-1 w-0 opacity-0 group-hover:w-16 group-hover:opacity-100 focus:w-16 focus:opacity-100 cursor-pointer accent-[#B4532A] transition-all duration-300"
         />
-        <span className="w-9 text-left tabular-nums text-[#1b1b1b]">{speed}×</span>
+        <span className="tabular-nums">{speed}× speed</span>
       </label>
+      </div>
     </div>
   );
 };
