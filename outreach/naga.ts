@@ -6,6 +6,8 @@ const letter: OutreachLetter = {
   greeting: "hey Naga, I'm Zain.",
   video: "/video/naga.mp4",
   cutout: true,
+  poster: "/video/naga.jpg",
+  crop: [0.1016, 0.0828, 0.7895, 0.911],
   // the second each line starts in the recording, taken from its transcript
   cues: [0, 2.4, 15.4, 25.6, 38.2, 47.1, 72.8, 86.9, 87.3],
   paragraphs: [

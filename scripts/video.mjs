@@ -63,7 +63,7 @@ execFileSync(
 );
 
 // point the letter at it
-let src = readFileSync(letter, 'utf8').replace(/\n  (video|cutout): .*,/g, '');
+let src = readFileSync(letter, 'utf8').replace(/\n  (video|cutout|poster|crop): .*,/g, '');
 src = src.replace(/(\n  greeting: .*,)/, `$1\n  video: "/video/${slug}.mp4",\n  cutout: true,`);
 if (!src.includes(`video: "/video/${slug}.mp4"`)) throw new Error(`could not add the video to ${letter}`);
 writeFileSync(letter, src);
@@ -84,6 +84,14 @@ try {
   console.log(`now make the text in ${letter} match this, and set its cues.\n`);
 } catch (e) {
   console.log(`(could not transcribe: ${String(e.message).split('\n')[0]}. the video itself is fine.)`);
+}
+
+// zoom the page in on him and pick the still it shows before play
+try {
+  console.log(run('python3', ['scripts/framing.py', slug]).trim());
+  console.log(`look at public/video/${slug}.jpg: if he is not looking good in it, rerun  python3 scripts/framing.py ${slug} <second>`);
+} catch (e) {
+  console.log(`(could not set the framing: ${String(e.message).split('\n')[0]})`);
 }
 
 const mb = (statSync(out).size / 1e6).toFixed(1);

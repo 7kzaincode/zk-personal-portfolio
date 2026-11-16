@@ -24,6 +24,13 @@ export interface OutreachLetter {
       colour (see scripts/cutout). The player then has no frame, so he seems
       to be standing on the page. Only for a video file, not YouTube. */
   cutout?: boolean;
+  /** A still shown before the video is played: a frame where he looks good,
+      since the very first frame often is not. Written by scripts/framing.py. */
+  poster?: string;
+  /** The part of the video frame to show, as [left, top, width, height]
+      fractions, so he fills the player however far from the camera he sat.
+      Written by scripts/framing.py. */
+  crop?: [number, number, number, number];
   /** Optional: the second at which each line (greeting first, then each
       paragraph, then the sign-off lines) starts being spoken. Without it the
       text is spread evenly over the video's length. */
@@ -174,7 +181,12 @@ export const OutreachCard: React.FC<{ letter: OutreachLetter; slug: string }> = 
 /* As wide as the right-hand side allows, but never taller than the screen. */
 const fill = (shape: number) => `min(100%, calc((100vh - 8rem) * ${shape}))`;
 
-const Cutout: React.FC<{ src: string; videoRef: React.RefObject<HTMLVideoElement | null> }> = ({ src, videoRef }) => {
+const Cutout: React.FC<{
+  src: string;
+  videoRef: React.RefObject<HTMLVideoElement | null>;
+  poster?: string;
+  crop?: [number, number, number, number];
+}> = ({ src, videoRef, poster, crop }) => {
   const [playing, setPlaying] = React.useState(false);
   const [shape, setShape] = React.useState(16 / 10);
   const toggle = () => {
@@ -183,13 +195,19 @@ const Cutout: React.FC<{ src: string; videoRef: React.RefObject<HTMLVideoElement
     if (v.paused) v.play();
     else v.pause();
   };
+  const [cx, cy, cw, ch] = crop ?? [0, 0, 1, 1];
   const fade =
     'linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 6%, #000 88%, transparent)';
   return (
-    <div className="relative mx-auto" style={{ width: fill(shape) }}>
+    <div className="relative mx-auto" style={{ width: fill(shape * cw / ch) }}>
+      <div
+        className="relative overflow-hidden"
+        style={{ aspectRatio: String(shape * cw / ch), WebkitMaskImage: fade, maskImage: fade, WebkitMaskComposite: 'source-in', maskComposite: 'intersect' }}
+      >
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         playsInline
         preload="auto"
         onLoadedMetadata={(e) => {
@@ -200,9 +218,10 @@ const Cutout: React.FC<{ src: string; videoRef: React.RefObject<HTMLVideoElement
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
-        className="block w-full cursor-pointer"
-        style={{ WebkitMaskImage: fade, maskImage: fade, WebkitMaskComposite: 'source-in', maskComposite: 'intersect' }}
+        className="absolute max-w-none cursor-pointer"
+        style={{ width: `${100 / cw}%`, left: `${(-cx / cw) * 100}%`, top: `${(-cy / ch) * 100}%` }}
       />
+      </div>
       <button
         type="button"
         onClick={toggle}
@@ -495,7 +514,7 @@ const OutreachPage: React.FC<{ letter: OutreachLetter }> = ({ letter }) => {
               <div ref={youtubeRef} className="w-full h-full" />
             </div>
           ) : letter.cutout ? (
-            <Cutout src={letter.video} videoRef={videoRef} />
+            <Cutout src={letter.video} videoRef={videoRef} poster={letter.poster} crop={letter.crop} />
           ) : (
             <video
               ref={videoRef}

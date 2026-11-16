@@ -6,6 +6,8 @@ const letter: OutreachLetter = {
   greeting: "hey Gabrielle, I'm Zain.",
   video: "/video/gabrielle.mp4",
   cutout: true,
+  poster: "/video/gabrielle.jpg",
+  crop: [0.1088, 0.0391, 0.7895, 0.911],
   // the second each line starts in the recording, taken from its transcript
   cues: [0.8, 2.9, 13.5, 23.6, 43.7, 52.6, 78.5, 85.7, 86.1],
   paragraphs: [
