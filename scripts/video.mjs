@@ -54,7 +54,9 @@ execFileSync(
       `-map 0:v:0 -map '1:a:0?' ` +
       `-vf scale=in_range=full:out_range=tv:out_color_matrix=bt709,format=yuv420p ` +
       `-colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv ` +
-      `-c:v libx264 -preset slow -crf 23 -c:a aac -b:a 96k -ac 1 -shortest -movflags +faststart ${q(out)}`,
+      // a laptop mic records far too quietly: clean it up and bring it to normal web volume
+      `-af highpass=f=70,afftdn=nr=10:nf=-45,loudnorm=I=-16:TP=-1.5:LRA=11,aresample=44100 ` +
+      `-c:v libx264 -preset slow -crf 23 -c:a aac -b:a 128k -ac 1 -shortest -movflags +faststart ${q(out)}`,
   ],
   { stdio: 'inherit', shell: false }
 );
