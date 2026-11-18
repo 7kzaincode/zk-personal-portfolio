@@ -5,7 +5,7 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Tesla?",
   greeting: "hey Reid, I'm Zain.",
   paragraphs: [
-    "your profile says to reach out if I want to talk sports, employment opportunities, or networking. I can't help you much with the Ravens, but I'm very interested in the employment part. so here I am.",
+    "your profile says to reach out if I want to talk sports, employment opportunities, or networking. now, I haven't watched many football games, although interestingly enough, I have looked into John Urschel's math proofs, and he played for your Ravens. but I'm mostly here for the employment part.",
     "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
     "a little bit about me: this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries.",
     "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
