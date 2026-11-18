@@ -5,7 +5,7 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Viggle?",
   greeting: "hey, I'm Zain.",
   paragraphs: [
-    "I saw your posting for a co-op on the team behind the [Viggle](https://viggle.ai/) app, and since you're a video company, I figured a video would make more sense than a cover letter. so here I am.",
+    "I saw your posting for a co-op for an MTS role working on the [Viggle](https://viggle.ai/) app, and since you're a video company, I figured a video would make more sense than a cover letter. so here I am.",
     "anyways, a little bit about me: I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
     "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries. it's all TypeScript and React.",
     "the way the team worked was slightly ancient when I got there, so I shared the harness I'd set up for myself, and pretty soon everyone else was on it too. I'd like to think it sped everyone up, although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
