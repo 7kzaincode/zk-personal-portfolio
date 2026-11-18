@@ -11,7 +11,7 @@ const letter: OutreachLetter = {
     "the way the team worked was slightly ancient when I got there, so I shared the harness I'd set up for myself, and pretty soon everyone else was on it too. I'd like to think it sped everyone up, although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
     "and before that, I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days I was just working on internal tooling, and others I was just the guy carrying appliances up the stairs. I kind of just did it all. on top of that, I built them a system that takes a project from bid to supplier quotes, all the way to pricing and orders, and its whole gist is basically just automating the manual, boring, error-prone work in between.",
     "and on the mobile side, I built [Scanify](https://devpost.com/software/scanify-db2xms) with a few friends at Hack Canada. it's an App Clip written in Swift and SwiftUI, where you scan any product's barcode in a store and get an experience made for that exact product.",
-    "anyways, I've already applied on WaterlooWorks, and I'd really like to work on the Viggle app this winter. so if you'd like to chat, you can book a time with me right below this.",
+    "anyways, I've already applied on WaterlooWorks, and I'd like to work on the Viggle app this winter. so if you'd like to chat, you can book a time with me right below this. or, you know, just give me the WaterlooWorks interview. either works.",
   ],
   signoff: ["Thank you.", "Zain"],
 };
