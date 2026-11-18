@@ -11,7 +11,7 @@ const letter: OutreachLetter = {
     "I also built [extgen](https://github.com/7kzaincode/the-extension), which is a Chrome side panel where you type what you want in a sentence, and it builds you an extension you can actually install.",
     "and this past summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries.",
     "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
-    "anyways, I'd really like to work at Botpress this winter. so if you have a spot for an intern, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
+    "anyways, if any engineering teams at Botpress still have intern spots for january, I'd love to be considered. you can book a time with me right below this.",
   ],
   signoff: ["Thank you.", "Zain"],
 };
