@@ -5,12 +5,14 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Bree?",
   greeting: "hey Adam, I'm Zain.",
   paragraphs: [
-    "word on the street is that Bree has a backend co-op open. conveniently, I spent my summer on backend services, and the three years before that making sure a contractor's payments traced back to their source.",
-    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in backend work where the numbers have to be right.",
-    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
-    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
-    "if you're interested, please book a time with me below!",
+    "I saw Bree has a backend co-op open. and I spent my summer working on backend services, and the three years before that making sure a contractor's payments always traced back to where they came from. so I figured I'd reach out.",
+    "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
+    "a little bit about me: this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries. on top of that, I worked on the backend for six of their other apps, so services, databases, APIs.",
+    "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
+    "and before that, I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days I was just working on internal tooling, and others I was just the guy carrying appliances up the stairs. I kind of just did it all. on top of that, I built them a system that takes a project from bid to supplier quotes, all the way to pricing and orders, and its whole gist is basically just automating the manual, boring, error-prone work in between. and you can always trace any number back to where it came from.",
+    "anyways, I'd really like to work at Bree this winter. so if you have a spot for an intern, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
   ],
+  signoff: ["Thank you.", "Zain"],
 };
 
 export default letter;

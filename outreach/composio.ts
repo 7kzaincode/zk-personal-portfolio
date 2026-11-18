@@ -5,13 +5,14 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Composio?",
   greeting: "hey Balaji, I'm Zain.",
   paragraphs: [
-    "word on the street is that Composio has a fullstack internship open for winter 2027. conveniently, I hand-wrote the GitHub, Gmail, and calendar integrations for my last agent, which is the best argument for Composio I can think of.",
-    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in tools and integrations for agents.",
-    "at a hackathon my team and I built [otto](https://github.com/7kzaincode/otto), a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
-    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
-    "before that I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
-    "if you're interested, please book a time with me below!",
+    "I saw Composio has a fullstack internship open for this winter. and the funny thing is, for my last project I wrote the GitHub, Gmail, and calendar integrations by hand, which is exactly the thing you guys make so people don't have to. so I figured I'd reach out.",
+    "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
+    "that project was [otto](https://github.com/7kzaincode/otto), which I built with a few friends at a hackathon. it's basically a voice assistant: you tell it what you want, and it creates the calendar event, sends the email, or summarizes your GitHub for you. and we ended up winning first place in the LiveKit track.",
+    "and this past summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries. on top of that, I worked on the backend for six of their other apps, so services, databases, APIs.",
+    "and before that, I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days I was just working on internal tooling, and others I was just the guy carrying appliances up the stairs. I kind of just did it all. on top of that, I built them a system that takes a project from bid to supplier quotes, all the way to pricing and orders, and its whole gist is basically just automating the manual, boring, error-prone work in between.",
+    "anyways, I'd really like to work at Composio this winter. so if you have a spot for an intern, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
   ],
+  signoff: ["Thank you.", "Zain"],
 };
 
 export default letter;

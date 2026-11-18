@@ -5,14 +5,15 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Botpress?",
   greeting: "hey Vladyslav, I'm Zain.",
   paragraphs: [
-    "word on the street is that Botpress has two software intern postings for winter 2027. conveniently, I've built three agent systems the hard way, without a platform, so I'm motivated.",
-    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in platforms for building agents.",
-    "at a hackathon my team and I built [otto](https://github.com/7kzaincode/otto), a voice assistant that turns what you say into calendar events, sent emails, and GitHub summaries. we won 1st in the LiveKit track (after the demo nearly died mid-pitch, because Google tokens expire every hour).",
-    "I also built [extgen](https://github.com/7kzaincode/the-extension), a Chrome side panel that turns a sentence into an installable extension, using a small team of agents that plan, write, check, and package it.",
-    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's the thing that lets shoppers design their own tile patterns, and it's live in 80+ countries.",
-    "I also moved the team onto AI coding agents with pre-commit gates, so nothing an agent wrote got committed without passing the checks.",
-    "if you're interested, please book a time with me below!",
+    "I saw Botpress has two software intern postings up for this winter. and I've built a few agents the hard way, without a platform, so I think I'd appreciate yours more than most.",
+    "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
+    "so, a little bit about me: I built [otto](https://github.com/7kzaincode/otto) with a few friends at a hackathon. it's basically a voice assistant: you tell it what you want, and it creates the calendar event, sends the email, or summarizes your GitHub for you. and we ended up winning first place in the LiveKit track.",
+    "I also built [extgen](https://github.com/7kzaincode/the-extension), which is a Chrome side panel where you type what you want in a sentence, and it builds you an extension you can actually install.",
+    "and this past summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries.",
+    "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
+    "anyways, I'd really like to work at Botpress this winter. so if you have a spot for an intern, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
   ],
+  signoff: ["Thank you.", "Zain"],
 };
 
 export default letter;

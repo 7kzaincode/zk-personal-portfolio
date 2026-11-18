@@ -5,12 +5,14 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Mantle?",
   greeting: "hey Amit, I'm Zain.",
   paragraphs: [
-    "your co-op page says more than half of Mantle went to waterloo. I'd like to help keep that number up.",
-    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in equity software, where the history has to be exactly right.",
-    "I spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between, while still being able to tell you where every number came from.",
-    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
-    "if you're interested, please book a time with me below!",
+    "your co-op page says more than half of Mantle went to Waterloo. so I figured I'd reach out and try to help keep that number up.",
+    "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
+    "a little bit about me: I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days I was just working on internal tooling, and others I was just the guy carrying appliances up the stairs. I kind of just did it all. on top of that, I built them a system that takes a project from bid to supplier quotes, all the way to pricing and orders, and its whole gist is basically just automating the manual, boring, error-prone work in between. and you can always trace any number back to where it came from.",
+    "and then this past summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries. on top of that, I worked on the backend for six of their other apps, so services, databases, APIs.",
+    "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm just giving myself a bit too much credit. but hey, nobody's switched back yet.",
+    "anyways, I'd really like to work at Mantle this winter. so if you have a spot for an intern, I'd really appreciate a quick chat. you can book a time with me right below this, if you'd like.",
   ],
+  signoff: ["Thank you.", "Zain"],
 };
 
 export default letter;

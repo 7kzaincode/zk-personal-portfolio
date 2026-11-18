@@ -5,13 +5,14 @@ const letter: OutreachLetter = {
   subject: "Could I please please (please) come work with you at Fullscript?",
   greeting: "hey Kylie, I'm Zain.",
   paragraphs: [
-    "word on the street is that Fullscript has a standing co-op posting. I'm choosing to read that as a standing invitation.",
-    "like I said in my email, I'm a computer engineering student @ [waterloo](https://uwaterloo.ca/), and I'm interested in health e-commerce.",
-    "this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production (it's live in 80+ countries), and shipped backend features across six other production apps.",
-    "I also built [toothfairy](https://github.com/7kzaincode/toothfairy), an assistant that remembers your dental history better than you do. it reads X-rays and clinical notes and turns them into a treatment plan with procedure codes and costs.",
-    "I also spent almost three years as the only engineer at Kasperia, an appliance contracting company (and, on some days, the guy carrying the appliances up the stairs). I built them a system that takes a project from bid to supplier quotes to pricing to orders, and its whole gist is automating the manual, boring, error-prone work in between.",
-    "if you're interested, please book a time with me below!",
+    "I saw Fullscript keeps a co-op posting open pretty much year-round. and I'm choosing to read that as an open invitation, so here I am.",
+    "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
+    "a little bit about me: this summer I was at [Leap Tools](https://www.leaptools.com/), where I led the rebuild of their surface designer from plan to production. it's basically the thing that lets shoppers design their own tile patterns, and it's live in over 80 countries. on top of that, I worked on the backend for six of their other apps, so services, databases, APIs.",
+    "I also built [toothfairy](https://github.com/7kzaincode/toothfairy) with a team at a hackathon. it's basically an assistant for dentists that reads X-rays and clinical notes, and turns them into a treatment plan with the procedure codes and costs.",
+    "and before that, I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days I was just working on internal tooling, and others I was just the guy carrying appliances up the stairs. I kind of just did it all. on top of that, I built them a system that takes a project from bid to supplier quotes, all the way to pricing and orders, and its whole gist is basically just automating the manual, boring, error-prone work in between.",
+    "anyways, if any engineering teams at Fullscript still have intern spots for january, I'd love to be considered. you can book a time with me right below this.",
   ],
+  signoff: ["Thank you.", "Zain"],
 };
 
 export default letter;
