@@ -1,0 +1,18 @@
+import type { OutreachLetter } from '../components/OutreachPage';
+
+const letter: OutreachLetter = {
+  to: "Samuel",
+  subject: "Could I please please (please) come work with you at Tesla?",
+  greeting: "hey Samuel, I'm Zain.",
+  paragraphs: [
+    "I saw that you started out as a cell engineering intern at Tesla, and now you run the team. I'd love to do the intern part this winter, so I figured I'd ask you directly.",
+    "anyways, if you're seeing this, that means you've seen my email. like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april, ideally on your team.",
+    "to give you an idea of what I do: I spent this summer at [Leap Tools](https://www.leaptools.com/), where I rebuilt their surface designer from start to finish. that's basically the tool shoppers use to design their own tile patterns, and it's being used in over 80 countries.",
+    "while I was there, I also got the team onto some internal tooling. I'd like to think it sped everyone up, although I might be giving myself too much credit. but hey, nobody's gone back to the old way yet.",
+    "and before that, I spent almost three years as the only engineer at Kasperia, which is an appliance contracting company. some days working on internal tooling, and others I was just the guy carrying appliances up the stairs, I kind of just did it all. on top of that, I built them a procurement system that takes a project from the bid and the supplier quotes, through pricing and every change order, all the way to deliveries and invoices, and its whole gist is basically just automating the manual, boring, error-prone work in between.",
+    "and the closest I've actually gotten to a vehicle so far is that I wrote ROS 2 nodes across perception, planning, and control for the autonomous car at [WATonomous](https://www.watonomous.ca/).",
+    "anyways, I'd really like to work on the software side of cell engineering. so if you have any spots for interns this winter, I'd really appreciate a quick chat. you can book a time with me right below this.",
+  ],
+};
+
+export default letter;

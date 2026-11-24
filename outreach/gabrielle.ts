@@ -1,0 +1,24 @@
+import type { OutreachLetter } from '../components/OutreachPage';
+
+const letter: OutreachLetter = {
+  to: "Gabrielle",
+  subject: "Could I please please (please) come work with you at Tesla?",
+  greeting: "hey Gabrielle, I'm Zain.",
+  video: "/video/gabrielle.mp4",
+  cutout: true,
+  poster: "/video/gabrielle.jpg",
+  crop: [0.1088, 0.0391, 0.7895, 0.911],
+  // the second each line starts in the recording, taken from its transcript
+  cues: [0.8, 2.9, 13.5, 23.6, 43.7, 52.6, 78.5, 85.7, 86.1],
+  paragraphs: [
+    "I've heard you've hired quite a few of Tesla's software interns, especially on the energy side. I just happen to be hoping to become one this winter, so I figured you're the person to talk to.",
+    "anyways, if you're seeing this, that means you've seen my email. like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
+    "so, a bit about what I've done: this past summer I worked at [Leap Tools](https://www.leaptools.com/), and I ended up leading the rebuild of their surface designer, from the first plan all the way to production. it's basically what lets shoppers design their own tile patterns, and it's live in over 80 countries now. on top of that, I worked on the backend for six of their apps, so services, databases, and APIs.",
+    "I also moved the team onto some internal tooling that I'd like to think sped everyone up. although maybe I'm giving myself a bit too much credit. but hey, nobody's switched back just yet.",
+    "so before that, I was the only engineer at Kasperia for roughly three years. they're an appliance contracting company based out of Vancouver, so some days I was working on internal tooling, and other days I was literally just carrying appliances up the stairs. I kind of just did it all. but the big thing was the system that I built that takes a project from bid to supplier quotes, all the way to pricing and orders. its whole gist is basically just automating the manual, boring, error-prone work in between.",
+    "anyways, if any energy software teams still have intern spots for january, I'd love to be considered, and you can book a time with me right below this.",
+  ],
+  signoff: ["Thank you.", "Zain"],
+};
+
+export default letter;
