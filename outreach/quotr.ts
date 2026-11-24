@@ -1,9 +1,9 @@
 import type { OutreachLetter } from '../components/OutreachPage';
 
 const letter: OutreachLetter = {
-  to: "Hanyang and Junzhe",
+  to: "the Quotr team",
   subject: "Could I please please (please) come work with you at Quotr?",
-  greeting: "hey Hanyang and Junzhe, I'm Zain.",
+  greeting: "hey, I'm Zain.",
   paragraphs: [
     "I saw that Quotr takes a contractor's plans and turns them into a priced estimate, and then handles the supplier quotes and the bid comparison too. I spent three years building the procurement system for an appliance contractor: the supplier quotes, the pricing, and the change orders. so I figured I'd reach out.",
     "anyways, if you're seeing this, that means you've seen my email. and like I said there, I'm a computer engineering student at the University of [Waterloo](https://uwaterloo.ca/), and I'm looking for an internship from january to april.",
